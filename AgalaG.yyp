@@ -3,6 +3,11 @@
   "resourceVersion": "1.6",
   "name": "AgalaG",
   "resources": [
+    {"id":{"name":"spr_player","path":"sprites/spr_player/spr_player.yy",},"order":0,},
+    {"id":{"name":"obj_entity","path":"objects/obj_entity/obj_entity.yy",},"order":0,},
+    {"id":{"name":"InputHandler","path":"scripts/InputHandler/InputHandler.yy",},"order":1,},
+    {"id":{"name":"Vector2","path":"scripts/Vector2/Vector2.yy",},"order":0,},
+    {"id":{"name":"obj_player","path":"objects/obj_player/obj_player.yy",},"order":1,},
     {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},"order":0,},
   ],
   "Options": [
@@ -10,7 +15,7 @@
     {"name":"Windows","path":"options/windows/options_windows.yy",},
     {"name":"operagx","path":"options/operagx/options_operagx.yy",},
   ],
-  "defaultScriptType": 0,
+  "defaultScriptType": 1,
   "isEcma": false,
   "configs": {
     "name": "Default",
