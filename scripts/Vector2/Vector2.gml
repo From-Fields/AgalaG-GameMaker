@@ -11,6 +11,9 @@ function Vector2(_initX = 0, _initY = 0) constructor{
 	Normalized = function() {
 		var _length = Length();
 		
+		if(_length == 0)
+			return self;
+		
 		var _nX = _x / _length;
 		var _nY = _y / _length;
 		

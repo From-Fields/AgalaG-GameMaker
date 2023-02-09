@@ -8,8 +8,11 @@ _isDead = false;
 _defaultWeapon = noone;
 _weapon = _defaultWeapon;
 
-_defaultSpeed = 400;
+_defaultSpeed = 500;
 _currentSpeed = _defaultSpeed;
+
+_defaultAcceleration = 10;
+_currentAcceleration = _defaultAcceleration;
 
 _maxHealth = 3;
 _health = _maxHealth;
@@ -49,18 +52,23 @@ TakeDamage = function(_amount) {
 	}
 }
 
-Move = function(_direction, _speed) {
+Move = function(_direction, _speed, _acceleration) {
 	var _currentDirection = _direction.Normalized();
+	
+	show_debug_message(string(_currentDirection._x) + " " + string(_currentDirection._y));
 	
 	var _horizontalMovement = _currentDirection._x * _speed;
 	var _verticalMovement = _currentDirection._y * _speed;
 	
 	var _dt = delta_time / 1000000;
 
-	x = lerp(x, x + _horizontalMovement, _dt);
-	y = lerp(y, y + _verticalMovement, _dt);
+	phy_linear_velocity_x = lerp(phy_linear_velocity_x, _horizontalMovement, _dt * _acceleration);
+	phy_linear_velocity_y = lerp(phy_linear_velocity_y, _verticalMovement, _dt * _acceleration);
+
+	//x = lerp(x, x + _horizontalMovement, _dt * _acceleration);
+	//y = lerp(y, y + _verticalMovement, _dt * _acceleration);
 	
-	show_debug_message(x)
+	//show_debug_message(x)
 	
 	//x += _horizontalMovement;
 	//y += _verticalMovement;

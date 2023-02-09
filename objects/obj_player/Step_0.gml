@@ -2,8 +2,8 @@
 // You can write your code in this editor
 
 if(!_isDead) {
-	if(_inputHandler.HasMovement())
-		Move(_inputHandler.GetMovement(), _currentSpeed)
+	_movement = (_inputHandler.HasMovement()) ? _inputHandler.GetMovement() : new Vector2(0, 0);
+	Move(_movement, _currentSpeed, _currentAcceleration);
 	if(_inputHandler.GetShoot())
 		Shoot()
 }
