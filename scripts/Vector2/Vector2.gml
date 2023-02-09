@@ -19,8 +19,23 @@ function Vector2(_initX = 0, _initY = 0) constructor{
 		
 		return new Vector2(_nX, _nY);
 	}
-	
 	Multiply = function(_num) {
 		return new Vector2(_x * _num, _y * _num)
+	}
+	Subtract = function(_other) {
+		return new Vector2(_x - _other._x, _y - _other._y);	
+	}
+	Add = function(_other) {
+		return new Vector2(_x + _other._x, _y + _other._y);	
+	}
+	Angle = function(_other) {
+		var nV1 = Normalized()
+		var nV2 = _other.Normalized();
+		var v1 = point_direction(0, 0, nV1._x, nV1._y);
+		var v2 = point_direction(0, 0, nV2._x, nV2._y);
+		return abs(angle_difference(v1, v2));
+	}
+	Distance = function(_other) {
+		return sqrt(power(_x - _other._x, 2) + power(_y - _other._y, 2));	
 	}
 }
