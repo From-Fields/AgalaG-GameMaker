@@ -2,15 +2,21 @@
 // You can write your code in this editor
 event_inherited()
 
+_health = 1;
+_suicideDamage = 1;
 
 Die = function() {
-	show_debug_message("Oh boy. Am dead");	
+	_isDead = true;
+	Reserve();
 }
 Shoot = function() {
 	show_debug_message("Take that!");	
 }
 TakeDamage = function(_amount) {
-	show_debug_message("OW" + string(_amount));	
+	_health = clamp(_health - _amount, 0, _maxHealth);
+	
+	if(_health == 0)
+		Die();
 }
 
 Move = function(_direction, _speed, _acceleration) {

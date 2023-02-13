@@ -21,6 +21,7 @@ Initialize = function(actionQueue, startingAction, timeoutAction, position) {
 	if(actionQueue == undefined || timeoutAction == undefined)	
 		return;
 		
+	_isDead = false;
 	_actionQueue = actionQueue;
 	_startingAction = startingAction;
 	_timeoutAction = timeoutAction;

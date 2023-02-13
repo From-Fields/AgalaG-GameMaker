@@ -1,7 +1,7 @@
 /// @description Insert description here
 // You can write your code in this editor
 
-if(_currentAction != undefined) {
+if(!_isDead && _currentAction != undefined) {
 	if(_currentAction.CheckCondition(self))
 		ExecuteNextAction();
 		
