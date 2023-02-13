@@ -2,8 +2,8 @@
 
 // Attributes
 _health = 0;
-_position = new Vector2(x, y);
-_currentVelocity = new Vector2(phy_linear_velocity_x, phy_linear_velocity_y);
+_position = function() { return new Vector2(x, y); }
+_currentVelocity = function() { return new Vector2(phy_linear_velocity_x, phy_linear_velocity_y); }
 
 // Methods
 TakeDamage = function(_damage){}

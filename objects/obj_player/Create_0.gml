@@ -2,6 +2,7 @@
 // You can write your code in this editor
 
 event_inherited()
+phy_fixed_rotation = true;
 
 // Attributes
 _isDead = false;
@@ -54,8 +55,6 @@ TakeDamage = function(_amount) {
 
 Move = function(_direction, _speed, _acceleration) {
 	var _currentDirection = _direction.Normalized();
-	
-	show_debug_message(string(_currentDirection._x) + " " + string(_currentDirection._y));
 	
 	var _horizontalMovement = _currentDirection._x * _speed;
 	var _verticalMovement = _currentDirection._y * _speed;
