@@ -33,10 +33,12 @@ function InputHandler() constructor{
 		
 		return new Vector2(_horizontalInput, _verticalInput);
 	}
+	
 	GetPause = function() {
 		return keyboard_check(vk_escape);
 	}
+	
 	GetShoot = function() {
-		return keyboard_check(ord("J"));
+		return keyboard_check_pressed(ord("J"));
 	}
 }

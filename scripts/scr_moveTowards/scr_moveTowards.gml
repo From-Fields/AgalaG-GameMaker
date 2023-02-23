@@ -30,7 +30,7 @@ function MoveTowards(speedMultiplier, accelerationMultiplier, steeringSpeed, max
 		cv = _currentPosition.Add(_currentVelocity.Normalized().Multiply(100));
 		pos = _currentPosition;
 
-        show_debug_message(_angle);
+        //show_debug_message(_angle);
 		if(_currentVelocity.Length() != 0 && _angle >= _maximumAngle)
             return _currentVelocity.Normalized();
 
