@@ -6,8 +6,8 @@ phy_fixed_rotation = true;
 
 // Attributes
 _isDead = false;
-_defaultWeapon = noone;
-_weapon = _defaultWeapon;
+_defaultWeapon = new DefaultWeapon();
+_currentWeapon = _defaultWeapon;
 
 _defaultSpeed = 500;
 _currentSpeed = _defaultSpeed;
@@ -24,7 +24,11 @@ _inputHandler = new InputHandler();
 // Methods
 SwitchWeapon = function(_newWeapon) {
 	if(_newWeapon != noone)	
-		_weapon = _newWeapon;
+		_currentWeapon = _newWeapon;
+}
+
+SwitchDefaultWeapon = function() {
+	SwitchWeapon(_defaultWeapon);
 }
 
 AddPowerUp = function(_newPowerUp) {
@@ -54,28 +58,13 @@ TakeDamage = function(_amount) {
 }
 
 Move = function(_direction, _speed, _acceleration) {
-	var _currentDirection = _direction.Normalized();
-	
-	var _horizontalMovement = _currentDirection._x * _speed;
-	var _verticalMovement = _currentDirection._y * _speed;
-	
-	var _dt = delta_time / 1000000;
-
-	phy_linear_velocity_x = lerp(phy_linear_velocity_x, _horizontalMovement, _dt * _acceleration);
-	phy_linear_velocity_y = lerp(phy_linear_velocity_y, _verticalMovement, _dt * _acceleration);
-
-	//x = lerp(x, x + _horizontalMovement, _dt * _acceleration);
-	//y = lerp(y, y + _verticalMovement, _dt * _acceleration);
-	
-	//show_debug_message(x)
-	
-	//x += _horizontalMovement;
-	//y += _verticalMovement;
+	ApplyPhisicsMovement(_direction, _speed, _acceleration);
 }
 
-Shoot = function(){
-	show_debug_message("pew!");
+Shoot = function() {
+	_currentWeapon.Shoot(new Vector2(x, y));
 }
+
 Die = function(){
 	show_debug_message("NANI");
 	_isDead = true;

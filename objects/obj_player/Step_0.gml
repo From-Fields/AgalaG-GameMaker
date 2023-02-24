@@ -4,6 +4,7 @@
 if(!_isDead) {
 	_movement = (_inputHandler.HasMovement()) ? _inputHandler.GetMovement() : new Vector2(0, 0);
 	Move(_movement, _currentSpeed, _currentAcceleration);
-	if(_inputHandler.GetShoot())
-		Shoot()
+	if(_inputHandler.GetShoot()) {
+		Shoot();
+	}
 }

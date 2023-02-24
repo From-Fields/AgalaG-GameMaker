@@ -51,7 +51,7 @@ SwitchAction = function(_nextAction) {
 	if(_currentAction != undefined)
 		_currentAction.OnFinish(self);
 	_currentAction = _nextAction;
-	show_debug_message(_nextAction)
+	//show_debug_message(_nextAction)
 	if(_currentAction != undefined)
 		_currentAction.OnStart(self);
 }
@@ -60,5 +60,5 @@ Reserve = function() {
 	_startingAction = undefined;
 	_timeoutAction = undefined;
 	_currentAction = undefined;
-	visible = false;
+	instance_deactivate_object(id);
 }
