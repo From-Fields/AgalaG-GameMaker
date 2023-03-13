@@ -1,7 +1,7 @@
 {
   "resourceType": "GMObject",
   "resourceVersion": "1.0",
-  "name": "obj_enemy",
+  "name": "obj_poolable",
   "spriteId": null,
   "solid": false,
   "visible": true,
@@ -9,8 +9,8 @@
   "spriteMaskId": null,
   "persistent": false,
   "parentObjectId": {
-    "name": "obj_poolable",
-    "path": "objects/obj_poolable/obj_poolable.yy",
+    "name": "obj_entity",
+    "path": "objects/obj_entity/obj_entity.yy",
   },
   "physicsObject": false,
   "physicsSensor": false,
@@ -26,12 +26,11 @@
   "physicsShapePoints": [],
   "eventList": [
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","isDnD":false,"eventNum":0,"eventType":0,"collisionObjectId":null,},
-    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","isDnD":false,"eventNum":0,"eventType":3,"collisionObjectId":null,},
   ],
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "Enemy",
-    "path": "folders/Objects/Entity/Enemy.yy",
+    "name": "Entity",
+    "path": "folders/Objects/Entity.yy",
   },
 }

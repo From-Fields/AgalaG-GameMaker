@@ -1,11 +1,11 @@
 {
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
-  "name": "Vector2",
+  "name": "ObjectPool",
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "Utils",
-    "path": "folders/Scripts/Utils.yy",
+    "name": "Pool",
+    "path": "folders/Scripts/Pool.yy",
   },
 }

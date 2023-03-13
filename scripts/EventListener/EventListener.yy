@@ -1,7 +1,7 @@
 {
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
-  "name": "Vector2",
+  "name": "EventListener",
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
