@@ -8,7 +8,7 @@ function ObjectPool(
 	
 	_activeList = ds_list_create();
 	_inactiveQueue = ds_queue_create();
-	_inactiveList = ds_queue_create();
+	_inactiveList = ds_list_create();
 	
 	_functionHolder = fHolder;
 	
@@ -25,28 +25,28 @@ function ObjectPool(
 			
 		var entity = ds_queue_dequeue(_inactiveQueue);
 		ds_list_add(_activeList, entity);
-		RemoveFromList(_inactiveList, entity);
+		ds_list_remove(_inactiveList, entity);
 		
 		_functionHolder.onGetAction(entity);
 		
-		show_debug_message("Active: " + string(CountActive()));
-		show_debug_message("Inactive: " + string(CountInactive()));
+		//show_debug_message("Active: " + string(CountActive()));
+		//show_debug_message("Inactive: " + string(CountInactive()));
 			
 		return entity;
 	}
 	
 	Release = function(entity) {
-		if(ListContainsValue(_inactiveList, entity))
+		if(ds_list_contains(_inactiveList, entity))
 			throw("Tried to release an item which is already released.");
 			
 		_functionHolder.onReleaseAction(entity);
 		
 		ds_queue_enqueue(_inactiveQueue, entity);
 		ds_list_add(_inactiveList, entity);
-		RemoveFromList(_activeList, entity);
+		ds_list_remove(_activeList, entity);
 		
-		show_debug_message("Active: " + string(CountActive()));
-		show_debug_message("Inactive: " + string(CountInactive()));
+		//show_debug_message("Active: " + string(CountActive()));
+		//show_debug_message("Inactive: " + string(CountInactive()));
 	}
 	
 	Populate = function() {
@@ -60,18 +60,4 @@ function ObjectPool(
 
          Release(newEntity);
     }
-	
-	
-	RemoveFromList = function(list, entity) {
-		var _index = ds_list_find_index(list, entity);
-	
-		if(entity != undefined && _index >= 0) {
-			ds_list_delete(list, _index);
-		}
-	}
-	ListContainsValue = function(list, value) {
-		var _index = ds_list_find_index(list, value);
-		
-		return _index >= 0;
-	}
 }

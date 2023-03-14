@@ -66,7 +66,7 @@ Shoot = function() {
 }
 
 Die = function(){
-	show_debug_message("NANI");
+	//show_debug_message("NANI");
 	_isDead = true;
-	instance_deactivate_object(id);
+	visible = false;
 }

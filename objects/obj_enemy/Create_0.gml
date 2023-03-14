@@ -2,10 +2,12 @@
 // You can write your code in this editor
 
 event_inherited();
+visible = true;
 phy_active = true;
 phy_fixed_rotation = true;
 
 _score = 0;
+_isDead = false;
 
 _defaultSpeed = 500;
 _currentSpeed = _defaultSpeed;
@@ -18,8 +20,8 @@ _startingAction = undefined;
 _timeoutAction = undefined;
 _currentAction = undefined;
 
-onDeath = new EventListener();
 onRelease = new EventListener();
+onDeath = new EventListener();
 
 Initialize = function(actionQueue, startingAction, timeoutAction, position) {
 	if(actionQueue == undefined || timeoutAction == undefined)	
@@ -29,10 +31,13 @@ Initialize = function(actionQueue, startingAction, timeoutAction, position) {
 	_actionQueue = actionQueue;
 	_startingAction = startingAction;
 	_timeoutAction = timeoutAction;
-		
-	x = position._x;	
-	y = position._y;	
+
+	phy_position_x = position._x;	
+	phy_position_y = position._y;	
+	phy_active = true;
 	visible = true;
+	instance_activate_object(id);
+
 
 	if(startingAction != undefined)
 		ExecuteStartingAction();
@@ -72,7 +77,7 @@ SwitchAction = function(_nextAction) {
 
 //Death Methods
 Die = function() {
-	onDeath.Invoke();
+	onDeath.Invoke(_score);
 	Reserve();
 }
 Reserve = function() { }
@@ -89,8 +94,10 @@ OnReserve = function() {
 	onRelease.Clear();
 	
 	phy_active = false;
+	visible = false;
 	instance_deactivate_object(id);
 }
 
 //Poolable Implementation
+//onGetFromPool = function(obj) { instance_activate_object(obj); }
 onReleaseToPool = function(obj) { obj.OnReserve(); }

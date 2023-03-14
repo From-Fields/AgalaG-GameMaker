@@ -14,15 +14,15 @@ function EnemyKamikazePool() constructor {
 	}
 
 	onCreateFunction = function() { 
-		show_debug_message("Created")
-		return obj_enemy_kamikaze.onCreateFunction() 
+		//show_debug_message("Created")
+		return obj_enemy_kamikaze.CreateFunction() 
 	}
 	onGetAction = function(entity) {
-		show_debug_message("Got")
+		//show_debug_message("Got")
 		return obj_enemy_kamikaze.onGetFromPool(entity) 
 	}
 	onReleaseAction = function(entity) { 
-		show_debug_message("Released")
+		//show_debug_message("Released")
 		return obj_enemy_kamikaze.onReleaseToPool(entity) 
 	}
 }

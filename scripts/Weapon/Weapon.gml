@@ -13,7 +13,7 @@ function Weapon(bullet) constructor {
 	}
 	
 	Shoot = function(position) {
-		show_debug_message("PEW!");
+		//show_debug_message("PEW!");
 	}
 }
 
