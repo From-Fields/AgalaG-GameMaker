@@ -1,6 +1,10 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
-function MoveTowards(speedMultiplier, accelerationMultiplier, steeringSpeed, maximumAngle, minimumDistance, target): EnemyAction() constructor{
+function MoveTowards(
+	target, 
+	speedMultiplier = 1, accelerationMultiplier = 1, steeringSpeed = 1, 
+	maximumAngle = 360, minimumDistance = 5
+): EnemyAction() constructor{
 	if(typeof(target) != "struct"){
 		_targetObject = target;
 		_targetPosition = new Vector2(target.x, target.y);

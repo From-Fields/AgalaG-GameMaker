@@ -19,7 +19,7 @@ _maxHealth = 3;
 _health = _maxHealth;
 
 _powerUps = ds_list_create();
-_inputHandler = new InputHandler();
+_inputHandler = new InputHandler().Instance();
 
 // Methods
 SwitchWeapon = function(_newWeapon) {
@@ -39,7 +39,7 @@ AddPowerUp = function(_newPowerUp) {
 RemovePowerUp = function(_powerUp) {
 	var _index = ds_list_find_index(_powerUps, _powerUp);
 	
-	if(_powerUp != noone && _index != 1) {
+	if(_powerUp != noone && _index >= 0) {
 		ds_list_delete(_powerUps, _index);
 	}
 }
@@ -66,6 +66,7 @@ Shoot = function() {
 }
 
 Die = function(){
-	show_debug_message("NANI");
+	//show_debug_message("NANI");
 	_isDead = true;
+	visible = false;
 }

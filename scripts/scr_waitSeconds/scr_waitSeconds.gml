@@ -11,5 +11,6 @@ function WaitSeconds(_time): EnemyAction() constructor{
 	OnStart = function(_target) {
 		_startTime = get_timer();
 		_timeoutTime = _startTime + (_timeout * 1000000);
+		
 	}
 }

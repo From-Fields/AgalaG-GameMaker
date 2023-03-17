@@ -1,15 +1,15 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function InputHandler() constructor{
-	//global._inputHandler = noone;
-	
-	//static instance = function() {
-	//	if(global._inputHandler == noone) {
-	//		global._inputHandler = new InputHandler();
-	//	}
+	Instance = function() {
+		static _inputHandler = noone;
 		
-	//	return global._inputHandler;
-	//}
+		if(_inputHandler == noone) {
+			_inputHandler = new InputHandler();
+		}
+		
+		return _inputHandler;
+	}
 	
 	Left = function() {
 		return keyboard_check(ord("A"));
