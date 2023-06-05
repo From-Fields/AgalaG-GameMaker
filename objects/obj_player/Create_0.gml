@@ -20,6 +20,7 @@ _health = _maxHealth;
 
 _powerUps = ds_list_create();
 _inputHandler = new InputHandler().Instance();
+onDeath = new EventListener();
 
 // Methods
 SwitchWeapon = function(_newWeapon) {
@@ -69,4 +70,5 @@ Die = function(){
 	//show_debug_message("NANI");
 	_isDead = true;
 	visible = false;
+	onDeath.Invoke();
 }
