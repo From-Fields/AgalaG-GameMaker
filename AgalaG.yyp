@@ -31,6 +31,7 @@
     {"id":{"name":"obj_waveController","path":"objects/obj_waveController/obj_waveController.yy",},"order":0,},
     {"id":{"name":"scr_enemyGeminiPool","path":"scripts/scr_enemyGeminiPool/scr_enemyGeminiPool.yy",},"order":1,},
     {"id":{"name":"default_font","path":"fonts/default_font/default_font.yy",},"order":0,},
+    {"id":{"name":"scr_enemyBumblebeePool","path":"scripts/scr_enemyBumblebeePool/scr_enemyBumblebeePool.yy",},"order":3,},
     {"id":{"name":"scr_waitSeconds","path":"scripts/scr_waitSeconds/scr_waitSeconds.yy",},"order":0,},
     {"id":{"name":"scr_enemyAction","path":"scripts/scr_enemyAction/scr_enemyAction.yy",},"order":0,},
     {"id":{"name":"scr_vector2","path":"scripts/scr_vector2/scr_vector2.yy",},"order":0,},
