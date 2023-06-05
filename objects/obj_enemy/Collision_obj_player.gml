@@ -3,5 +3,5 @@
 
 if(!_isDead) {
 	Die();
-	other.TakeDamage(_suicideDamage);
+	other.TakeDamage(_collisionDamage);
 }

@@ -20,9 +20,13 @@ _startingAction = undefined;
 _timeoutAction = undefined;
 _currentAction = undefined;
 
+_defaultCollisionDamage = 1;
+_collisionDamage = 0;
+
 onRelease = new EventListener();
 onDeath = new EventListener();
 
+SubInitialize = function() {}
 Initialize = function(actionQueue, startingAction, timeoutAction, position) {
 	if(actionQueue == undefined || timeoutAction == undefined)	
 		return;
@@ -31,6 +35,7 @@ Initialize = function(actionQueue, startingAction, timeoutAction, position) {
 	_actionQueue = actionQueue;
 	_startingAction = startingAction;
 	_timeoutAction = timeoutAction;
+	_collisionDamage = _defaultCollisionDamage;
 
 	phy_position_x = position._x;	
 	phy_position_y = position._y;	
@@ -38,6 +43,7 @@ Initialize = function(actionQueue, startingAction, timeoutAction, position) {
 	visible = true;
 	instance_activate_object(id);
 
+	SubInitialize();
 
 	if(startingAction != undefined)
 		ExecuteStartingAction();
@@ -80,7 +86,8 @@ Die = function() {
 	onDeath.Invoke(_score);
 	Reserve();
 }
-Reserve = function() { }
+Reserve = function() {}
+SubReserve = function() {}
 OnReserve = function() {
 	_isDead = true;
 	onRelease.Invoke();
@@ -96,6 +103,8 @@ OnReserve = function() {
 	phy_active = false;
 	visible = false;
 	instance_deactivate_object(id);
+	
+	SubReserve();
 }
 
 //Poolable Implementation
