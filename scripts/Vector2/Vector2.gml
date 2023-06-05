@@ -51,4 +51,7 @@ function Vector2(_initX = 0, _initY = 0) constructor{
 	Distance = function(_other) {
 		return sqrt(power(_x - _other._x, 2) + power(_y - _other._y, 2));	
 	}
+	String = function() {
+		return ("X: " + string(_x) + " Y: " + string(_y))
+	}
 }

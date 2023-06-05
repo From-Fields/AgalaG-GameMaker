@@ -27,7 +27,7 @@ CreateWave = function()
 	unitB.Create(
 		obj_enemy_kamikaze,
 		new Vector2(1366 - 300, -60),
-        new MoveTowards(new Vector2(1366 - 300, 300), 0.7),
+        new MoveAndShoot(new Vector2(1366 - 300, 300), 0.7),
         new MoveTowards(new Vector2(1366 + 60, 350), 1.5),
 		queueB,
 		LogScore

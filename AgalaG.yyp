@@ -4,6 +4,7 @@
   "name": "AgalaG",
   "resources": [
     {"id":{"name":"spr_player","path":"sprites/spr_player/spr_player.yy",},"order":0,},
+    {"id":{"name":"scr_moveAndShoot","path":"scripts/scr_moveAndShoot/scr_moveAndShoot.yy",},"order":1,},
     {"id":{"name":"ObjectPool","path":"scripts/ObjectPool/ObjectPool.yy",},"order":0,},
     {"id":{"name":"EnemyKamikazePool","path":"scripts/EnemyKamikazePool/EnemyKamikazePool.yy",},"order":0,},
     {"id":{"name":"test_Wave","path":"objects/test_Wave/test_Wave.yy",},"order":0,},

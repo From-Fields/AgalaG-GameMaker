@@ -13,7 +13,7 @@ SubInitialize = function() {
 }
 
 //Entity Implementation
-Shoot = function() { }
+Shoot = function() {}
 TakeDamage = function(_amount) {
 	_currentHealth = clamp(_currentHealth - _amount, 0, _maxHealth);
 	
@@ -24,7 +24,7 @@ Move = function(_direction, _speed, _acceleration) {
 	ApplyPhisicsMovement(_direction, _speed, _acceleration);	
 }
 Stop = function() {
-	ApplyPhisicsMovement(_direction, new Vector2(0, 0), 0.9);	
+	ApplyPhisicsMovement(new Vector2(0, 0), 0, 0.9);
 }
 
 //Poolable Implementation

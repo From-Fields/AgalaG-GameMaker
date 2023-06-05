@@ -3,7 +3,7 @@
 function MoveTowards(
 	target, 
 	speedMultiplier = 1, accelerationMultiplier = 1, steeringSpeed = 1, 
-	maximumAngle = 360, minimumDistance = 5
+	maximumAngle = 360, minimumDistance = 5, decelerate = true, decelerationRadius = 50, stopOnEnd = true
 ): EnemyAction() constructor{
 	if(typeof(target) != "struct"){
 		_targetObject = target;
@@ -18,12 +18,18 @@ function MoveTowards(
 	_steeringSpeed = steeringSpeed;
 	_maximumAngle = maximumAngle;
 	_minimumDistance = minimumDistance;
+	_decelerate = decelerate; 
+	_decelerationRadius = decelerationRadius; 
+	_stopOnEnd = stopOnEnd;
+	
+	_decelerationMultiplier = 1;
 	
 	dv = noone;
 	cv = noone;
 	pos = noone;
 	
 	GetSteeringVector = function(_speed, _currentPosition, _currentVelocity) {
+		var steeringMultiplier = _steeringSpeed;
 		var _desiredVelocity = _targetPosition.Subtract(_currentPosition).Normalized().Multiply(_speed * _speedMultiplier);
 
         //Calculates angle between velocity calculated above and current, actual velocity.
@@ -40,7 +46,19 @@ function MoveTowards(
 
         //Calculates the hypotenuse vector between the current and desired velocities, multiplied by the turning speed.
         //Returns this normalized value.
-        _steeringVector = _desiredVelocity.Subtract(_currentVelocity).Multiply(_steeringSpeed);
+        _steeringVector = _desiredVelocity.Subtract(_currentVelocity).Multiply(steeringMultiplier);
+		
+		 if(_decelerate) {
+            _decelerationMultiplier = 1;
+            var distance = _currentPosition.Distance(_targetPosition);
+            if(distance <= _decelerationRadius) {
+                _decelerationMultiplier = clamp(distance, 0, distance) / _decelerationRadius;
+                _steeringVector = _steeringVector.Multiply(_decelerationMultiplier);
+            }
+            //show_debug_message(string(distance) + " vector: " + _targetPosition.String() + " Multiplier: " + string(decelerationMultiplier));
+        }
+
+		show_debug_message(_decelerationMultiplier)
 
         return _currentVelocity.Add(_steeringVector).Normalized();
 	}
@@ -54,9 +72,12 @@ function MoveTowards(
 			_targetPosition = _targetObject._position();
 
 		_desiredDirection = GetSteeringVector(_target._currentSpeed, _target._position(), _target._currentVelocity());
-		_target.Move(_desiredDirection, _target._currentSpeed * _speedMultiplier, _target._currentAcceleration * _accelerationMultiplier);
+		_target.Move(_desiredDirection, _target._currentSpeed * _speedMultiplier * _decelerationMultiplier, _target._currentAcceleration * _accelerationMultiplier);
 	}
-	OnFinish = function(_target) { }
+	OnFinish = function(_target) {
+		if(_stopOnEnd)
+			_target.Stop();
+	}
 	Draw = function() {
 		draw_line_width_color(pos._x, pos._y, cv._x, cv._y, 2, c_red, c_red);
 		draw_line_width_color(pos._x, pos._y, dv._x, dv._y, 2, c_green, c_green);

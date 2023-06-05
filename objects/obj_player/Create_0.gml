@@ -62,7 +62,7 @@ Move = function(_direction, _speed, _acceleration) {
 	ApplyPhisicsMovement(_direction, _speed, _acceleration);
 }
 Stop = function() {
-	ApplyPhisicsMovement(_direction, new Vector2(0, 0), 1);
+	ApplyPhisicsMovement(new Vector2(0, 0), 0, 0.9);
 }
 
 Shoot = function() {
