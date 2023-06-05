@@ -23,6 +23,9 @@ TakeDamage = function(_amount) {
 Move = function(_direction, _speed, _acceleration) {
 	ApplyPhisicsMovement(_direction, _speed, _acceleration);	
 }
+Stop = function() {
+	ApplyPhisicsMovement(_direction, new Vector2(0, 0), 0.9);	
+}
 
 //Poolable Implementation
 CreateFunction = function() { return instance_create_layer(0, 0, "Instances", obj_enemy_kamikaze); }

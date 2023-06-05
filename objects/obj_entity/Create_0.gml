@@ -10,4 +10,5 @@ _currentVelocity = function() { return new Vector2(phy_linear_velocity_x, phy_li
 TakeDamage = function(_damage){}
 Move = function(_direction, _speed, _acceleration){}
 Shoot = function(){}
+Stop = function() {}
 Die = function(){}

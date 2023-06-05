@@ -61,6 +61,9 @@ TakeDamage = function(_amount) {
 Move = function(_direction, _speed, _acceleration) {
 	ApplyPhisicsMovement(_direction, _speed, _acceleration);
 }
+Stop = function() {
+	ApplyPhisicsMovement(_direction, new Vector2(0, 0), 1);
+}
 
 Shoot = function() {
 	_currentWeapon.Shoot(new Vector2(x, y));

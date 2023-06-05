@@ -19,6 +19,19 @@ function Vector2(_initX = 0, _initY = 0) constructor{
 		
 		return new Vector2(_nX, _nY);
 	}
+	Normalize = function() {
+		var _length = Length();
+		
+		if(_length != 0) {
+			var _nX = _x / _length;
+			var _nY = _y / _length;
+		
+			_x = _nX;
+			_y = _nY;
+		}
+		
+		return self;
+	}
 	Multiply = function(_num) {
 		return new Vector2(_x * _num, _y * _num)
 	}
