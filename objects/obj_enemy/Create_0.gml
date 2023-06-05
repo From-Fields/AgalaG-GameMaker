@@ -35,7 +35,6 @@ Initialize = function(actionQueue, startingAction, timeoutAction, position) {
 	_actionQueue = actionQueue;
 	_startingAction = startingAction;
 	_timeoutAction = timeoutAction;
-	_collisionDamage = _defaultCollisionDamage;
 
 	phy_position_x = position._x;	
 	phy_position_y = position._y;	
