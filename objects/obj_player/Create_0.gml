@@ -66,7 +66,7 @@ Stop = function() {
 }
 
 Shoot = function() {
-	_currentWeapon.Shoot(new Vector2(x, y));
+	_currentWeapon.Shoot(_position());
 }
 
 Die = function(){

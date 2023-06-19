@@ -13,6 +13,9 @@ Initialize = function(damage, direction_, speed_, isPlayer, sprite = spr_bullet)
 	_damage = damage;
 	_isPlayer = isPlayer;
 	
+	if(direction_._y > 0)
+		image_angle = 180;
+	
 	sprite_index = _sprite;
 }
 

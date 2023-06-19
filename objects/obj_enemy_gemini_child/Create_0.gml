@@ -6,7 +6,7 @@ event_inherited()
 _positionOffset = new Vector2(0, 0);
 _velocityMultiplier = 20;
 _orbitingVelocity = 1;
-_orbitMultiplier = 60;
+_orbitMultiplier = 100;
 _desiredVelocity = undefined;
 
 _parent = noone;
@@ -29,7 +29,7 @@ SetParent = function(parent, positionOffset, orbitingVelocity) {
     _orbitingVelocity = orbitingVelocity;
 }
 SetWeapon = function(weaponCooldown, missileDamage, missileSpeed) {
-    _weapon.SetAttributes(missileSpeed, missileDamage, weaponCooldown, new Vector2(0, 1));
+    _weapon.SetAttributes(missileSpeed, missileDamage, weaponCooldown, new Vector2(0, 1), -1, new Vector2(50, 50));
 }
 
 SubInitialize = function() {
@@ -41,15 +41,18 @@ SubInitialize = function() {
     _currentSpeed = _defaultSpeed;
     _currentAcceleration = _defaultAcceleration;
     _collisionDamage = _defaultCollisionDamage;
+	
+	onDeath.AddListener(DamageParent)
 }
 
-SubReserve = function() {
+DamageParent = function() {
 	_parent.TakeDamage(1);
 }
 
 //Entity Implementation
 Shoot = function() {
-	_weapon.Shoot();
+	show_debug_message("Shoot")
+	_weapon.Shoot(_position());
 }
 TakeDamage = function(_amount) {
 	_currentHealth = clamp(_currentHealth - _amount, 0, _maxHealth);
@@ -58,7 +61,7 @@ TakeDamage = function(_amount) {
 		Die();
 }
 Move = function(_direction, _speed, _acceleration) {
-	_desiredVelocity = _direction * _speed;
+	_desiredVelocity = _direction.Multiply(_speed);
 }
 Stop = function() {
 	_desiredVelocity = new Vector2(0, 0);

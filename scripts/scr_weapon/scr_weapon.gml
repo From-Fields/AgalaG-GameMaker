@@ -26,6 +26,9 @@ function DefaultWeapon(isPlayer = true, sprite_ = spr_bullet, bullet = obj_bulle
 	_cooldown = 0.1;
 	_direction = new Vector2(0, -1);
 	
+	_sprite = sprite_;
+	_isPlayer = isPlayer;
+	
 	_canShoot = true;
 	
 	Shoot = function(position) {
@@ -35,7 +38,7 @@ function DefaultWeapon(isPlayer = true, sprite_ = spr_bullet, bullet = obj_bulle
 		StartCooldown();
 		
 		var bullet_inst = instance_create_layer(_spawnPoint._x + position._x, _spawnPoint._y + position._y, _layer, _bullet);
-		bullet_inst.Initialize(_damage, _direction, _speed, true, sprite_);
+		bullet_inst.Initialize(_damage, _direction, _speed, _isPlayer, _sprite);
 	}
 	
 	StartCooldown = function()  {
@@ -49,11 +52,12 @@ function DefaultWeapon(isPlayer = true, sprite_ = spr_bullet, bullet = obj_bulle
 		_canShoot = true;
 	}
 	
-	SetAttributes = function(speed_ = -1, damage = -1, cooldown = -1, direction_ = undefined, maxAmmunition = -1) {
+	SetAttributes = function(speed_ = -1, damage = -1, cooldown = -1, direction_ = undefined, maxAmmunition = -1, spawnPoint = undefined) {
         _direction = (direction_ != undefined) ? direction_ : new Vector2(0, -1);
         _maxAmmunition = (maxAmmunition != -1) ? maxAmmunition : _maxAmmunition;
-        _speed = (speed != -1) ? speed : _speed;
+        _speed = (speed_ != -1) ? speed_ : _speed;
         _cooldown = (cooldown != -1) ? cooldown : _cooldown;
         _damage = (damage != -1)? damage : _damage;
+		_spawnPoint = (spawnPoint != undefined) ? spawnPoint : _spawnPoint;
      }
 }

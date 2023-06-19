@@ -58,6 +58,9 @@ function Vector2(_initX = 0, _initY = 0) constructor{
 		var _cos = cos(_angle);
 		var _sin = sin(_angle);
 		
-		return new Vector2(_cos * _x, _sin * _y);
+		var x_ = _x * _cos - _y * _sin;
+		var y_ = _x * _sin + _y * _cos;
+		
+		return new Vector2(x_, y_);
 	}
 }

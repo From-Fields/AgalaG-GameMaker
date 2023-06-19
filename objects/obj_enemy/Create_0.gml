@@ -36,6 +36,8 @@ Initialize = function(actionQueue, startingAction, timeoutAction, position) {
 	_startingAction = startingAction;
 	_timeoutAction = timeoutAction;
 
+	x = position._x;
+	y = position._y;
 	phy_position_x = position._x;	
 	phy_position_y = position._y;	
 	phy_active = true;

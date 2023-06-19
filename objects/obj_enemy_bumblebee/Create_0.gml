@@ -4,7 +4,7 @@ event_inherited()
 
 _weaponDamage = 1;
 _weaponCooldown = 0.5;
-_missileSpeed = 15;
+_missileSpeed = 50;
 
 _bulletSprite = spr_bullet_bumblebee;
 _weapon = new DefaultWeapon(false, _bulletSprite);
@@ -19,7 +19,7 @@ SubInitialize = function() {
 	_maxHealth = _defaultHealth;
 	_currentHealth = _defaultHealth;
 
-    _defaultSpeed = 10;
+    _defaultSpeed = 500;
     _defaultAcceleration = 10;
             
     _currentSpeed = _defaultSpeed;
@@ -32,12 +32,12 @@ SubInitialize = function() {
 
 
 SetWeapon = function(weaponCooldown, missileDamage, missileSpeed) {
-    _weapon.SetAttributes(missileSpeed, missileDamage, weaponCooldown, new Vector2(0, 1));
+    _weapon.SetAttributes(missileSpeed, missileDamage, weaponCooldown, new Vector2(0, 1), -1, new Vector2(25, 100));
 }
 
 //Entity Implementation
 Shoot = function() {
-	_weapon.Shoot();
+	_weapon.Shoot(_position());
 }
 TakeDamage = function(_amount) {
 	_currentHealth = clamp(_currentHealth - _amount, 0, _maxHealth);
