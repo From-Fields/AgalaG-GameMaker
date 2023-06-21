@@ -18,6 +18,7 @@ phy_position_y = 0;
     
 phy_active = false;
 visible = false;
+instance_deactivate_object(id);
 
 Initialize = function(
     powerUp, position, direction, speed = 750, 
