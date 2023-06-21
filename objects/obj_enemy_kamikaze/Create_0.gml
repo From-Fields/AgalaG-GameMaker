@@ -29,5 +29,5 @@ Stop = function() {
 
 //Poolable Implementation
 CreateFunction = function() { return instance_create_layer(0, 0, "Instances", obj_enemy_kamikaze); }
-Reserve = function() { Pool().Release(id); }
+ReserveToPool = function() { Pool().Release(id); }
 Pool = function() { return new EnemyKamikazePool().Instance(); }

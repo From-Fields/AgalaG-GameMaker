@@ -23,6 +23,5 @@ function EnemyGeminiChildPool() constructor {
 	}
 	onReleaseAction = function(entity) { 
 		//show_debug_message("Released")
-		return entity.OnReserve()
 	}
 }
