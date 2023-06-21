@@ -110,4 +110,4 @@ Reserve = function() {
 
 //Poolable Implementation
 //onGetFromPool = function(obj) { instance_activate_object(obj); }
-onReleaseToPool = function(obj) { }
+//onReleaseToPool = function(obj) { }
