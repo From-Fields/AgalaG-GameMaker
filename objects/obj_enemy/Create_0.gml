@@ -87,11 +87,10 @@ Die = function() {
 	onDeath.Invoke(_score);
 	Reserve();
 }
-Reserve = function() {}
+ReserveToPool = function() {}
 SubReserve = function() {}
-OnReserve = function() {
+Reserve = function() {
 	_isDead = true;
-	onRelease.Invoke();
 	
 	_actionQueue = ds_queue_create();
 	_startingAction = undefined;
@@ -99,15 +98,16 @@ OnReserve = function() {
 	_currentAction = undefined;
 	
 	onDeath.Clear();
-	onRelease.Clear();
 	
 	phy_active = false;
 	visible = false;
 	instance_deactivate_object(id);
 	
 	SubReserve();
+	ReserveToPool();
+	onRelease.Invoke();
 }
 
 //Poolable Implementation
 //onGetFromPool = function(obj) { instance_activate_object(obj); }
-onReleaseToPool = function(obj) { obj.OnReserve(); }
+onReleaseToPool = function(obj) { }

@@ -48,4 +48,8 @@ ExecuteTimeoutAction = function() {
 
     _enemy.ExecuteTimeoutAction();
 }
+OnRelease = function() {
+	 _enemy.onRelease.RemoveListener(OnRelease);
+	 _onUnitReleased.Invoke(id);
+}
 Reserve = function() { return _enemy.Reserve(); }
