@@ -16,6 +16,7 @@ _childPool = new EnemyGeminiChildPool().Instance();
 _score = 10;
 
 SubInitialize = function() {
+	visible = false;
 	_maxHealth = _defaultHealth;
 	_currentHealth = _defaultHealth;
 }

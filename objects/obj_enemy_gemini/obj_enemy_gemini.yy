@@ -3,8 +3,8 @@
   "resourceVersion": "1.0",
   "name": "obj_enemy_gemini",
   "spriteId": {
-    "name": "Sprite9",
-    "path": "sprites/Sprite9/Sprite9.yy",
+    "name": "spr_bullet_bumblebee",
+    "path": "sprites/spr_bullet_bumblebee/spr_bullet_bumblebee.yy",
   },
   "solid": false,
   "visible": false,
