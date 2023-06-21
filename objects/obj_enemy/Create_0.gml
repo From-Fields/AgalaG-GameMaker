@@ -23,11 +23,13 @@ _currentAction = undefined;
 _defaultCollisionDamage = 1;
 _collisionDamage = 0;
 
+_drop = undefined;
+
 onRelease = new EventListener();
 onDeath = new EventListener();
 
 SubInitialize = function() {}
-Initialize = function(actionQueue, startingAction, timeoutAction, position) {
+Initialize = function(actionQueue, startingAction, timeoutAction, position, drop_ = undefined) {
 	if(actionQueue == undefined || timeoutAction == undefined)	
 		return;
 		
@@ -43,6 +45,8 @@ Initialize = function(actionQueue, startingAction, timeoutAction, position) {
 	phy_active = true;
 	visible = true;
 	instance_activate_object(id);
+
+	_drop = drop_;
 
 	SubInitialize();
 
@@ -85,6 +89,19 @@ SwitchAction = function(_nextAction) {
 //Death Methods
 Die = function() {
 	onDeath.Invoke(_score);
+	
+    if(_drop != undefined) {
+        var randomX = random_range(-1, 1);
+        var randomY = random_range(-1, 1);;
+
+		var randomDirection = new Vector2(randomX, randomY);
+        randomDirection.Normalize();
+		
+		var position = new Vector2(phy_position_x, phy_position_y);
+
+        new PickUpPool().Instance.Get().Initialize(_drop, position, randomDirection);
+    }
+	
 	Reserve();
 }
 ReserveToPool = function() {}

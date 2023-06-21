@@ -5,7 +5,7 @@
 Create = function (
 	enemy,
 	startingPoint, startingAction, timeoutAction, actions, 
-	onDeath = undefined, onRelease = undefined, timeout = -1
+	onDeath = undefined, onRelease = undefined, timeout = -1, drop_ = undefined
 ) {
 	if(!instance_exists(enemy)){
 		enemy = instance_create_layer(0, 0, "Instances", enemy);
@@ -18,6 +18,8 @@ Create = function (
 	_startingAction = startingAction;
 	_timeoutAction = timeoutAction;
 	_actions = actions;
+	
+	_drop = drop_;
 	
 	_onUnitReleased = new EventListener();
 
@@ -34,7 +36,7 @@ Create = function (
 	
 // Methods
 Initialize = function() {
-	_enemy.Initialize(_actions, _startingAction, _timeoutAction, _startingPoint);
+	_enemy.Initialize(_actions, _startingAction, _timeoutAction, _startingPoint, _drop);
 	
 
     if(_timeout > 0)
