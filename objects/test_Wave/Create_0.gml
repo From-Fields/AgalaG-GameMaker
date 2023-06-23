@@ -48,5 +48,4 @@ LogScore = function(_score) {
 	show_debug_message(string(points));
 }
 
-
-CreateWave()
+CreateWave();
