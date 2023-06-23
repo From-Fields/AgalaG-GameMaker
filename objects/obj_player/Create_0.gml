@@ -51,7 +51,9 @@ RemovePowerUp = function(_powerUp) {
 }
 
 Heal = function(_amount) {
-	_health = clamp(_health + _amount, 0, _maxHealth);	
+	show_debug_message("Heal: " + string(_amount) + " + " + string(_health));
+	_health = clamp(_health + _amount, 0, _maxHealth);
+	show_debug_message(string(_health));
 }
 
 // Interface Implementation

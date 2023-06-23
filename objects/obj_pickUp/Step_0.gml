@@ -24,13 +24,12 @@ DoRotation = function() {
 
 	var _dt = delta_time / 1000000;
 	
-	rotation_ = image_angle + _rotationSpeed * _dt;
-    rotation_ = new MathF().Repeat(rotation_, 360);
-    // System.Diagnostics.Debug.WriteLine(rotation_);
-
-    image_angle = rotation_;
+    _currentAngle = math_repeat(_currentAngle + _rotationSpeed * _dt, 360);
+	phy_rotation = _currentAngle;
 }
 
 DoRotation();
 DoScale();
 
+velocity = new Vector2(phy_linear_velocity_x, phy_linear_velocity_y);
+show_debug_message(velocity.String());

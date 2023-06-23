@@ -13,15 +13,12 @@ _powerUp = undefined;
 
 x = 0;
 y = 0;
-phy_position_x = 0;
-phy_position_y = 0;
-    
-phy_active = false;
+
 visible = false;
 instance_deactivate_object(id);
 
 Initialize = function(
-    powerUp, position, direction, speed = 750, 
+    powerUp, position, direction_, speed_ = 750, 
     rotate = true, rotationSpeed = 100, 
     doScale = true, maximumScale = 1.3, scaleSpeed = 5
 ) {
@@ -30,20 +27,27 @@ Initialize = function(
     _rotationSpeed = rotationSpeed;
     _maximumScale = maximumScale;
     _scaleSpeed = scaleSpeed;
+	_currentAngle = 0;
 
     _powerUp = powerUp;
     sprite_index = powerUp.sprite;
-            
+    
+	phy_active = true;
+	
     x = position._x;
     y = position._y;
     phy_position_x = position._x;
     phy_position_y = position._y;
     
-	phy_active = true;
+	phy_fixed_rotation = true;
 	visible = true;
 	instance_activate_object(id);
             
-    ApplyPhisicsMovement(direction, speed);
+	_direction = direction_;
+	_speed = speed_;
+    ApplyPhisicsMovement(direction_, speed_);
 }
 
 Pool  = function() { return new PickUpPool().Instance(); }
+onGetFromPool = function() { }
+onReleaseToPool = function() { }

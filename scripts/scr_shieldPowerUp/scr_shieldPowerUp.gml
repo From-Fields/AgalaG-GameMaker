@@ -10,6 +10,8 @@ function ShieldPowerUp(): PowerUp() constructor{
 	OnTakeDamage = function(damage, playerHealth) {
         if(damage <= 0)
             return damage;
+		
+		show_debug_message("Shielded");
 
         EndPowerUp();
         return damage - 1;
