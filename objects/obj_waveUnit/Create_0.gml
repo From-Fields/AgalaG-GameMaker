@@ -28,7 +28,7 @@ Create = function (
 	if(onRelease != undefined)
 		_enemy.onRelease.AddListener(onRelease);
 		
-	_enemy.onRelease.AddListener(function() { _onUnitReleased.Invoke(id); })
+	_enemy.onRelease.AddListener(OnRelease)
 
 	_timeout = timeout;
 	_hasTimedOut = false;

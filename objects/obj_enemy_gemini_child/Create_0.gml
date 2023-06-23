@@ -42,17 +42,18 @@ SubInitialize = function() {
     _currentAcceleration = _defaultAcceleration;
     _collisionDamage = _defaultCollisionDamage;
 	
-	onDeath.AddListener(DamageParent)
+	_wasKilled = false;
+	onDeath.AddListener(function() { _wasKilled = true; })
 }
-
-DamageParent = function() {
-	_parent.TakeDamage(1);
+SubReserve = function() {
+	if(_wasKilled)
+		_parent.TakeDamage(1);
 }
 
 //Entity Implementation
 Shoot = function() {
-	show_debug_message("Shoot")
-	_weapon.Shoot(_position());
+	if(!_isDead)
+		_weapon.Shoot(_position());
 }
 TakeDamage = function(_amount) {
 	_currentHealth = clamp(_currentHealth - _amount, 0, _maxHealth);
