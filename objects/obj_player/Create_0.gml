@@ -61,7 +61,7 @@ TakeDamage = function(_amount) {
 	_damage = _amount;
 
 	for (i = 0; i < ds_list_size(_powerUps); i++) {
-	    _damage = ds_list_find_value(_powerUps, i).OnTakeDamage(_damage, _currentHealth); 
+	    _damage = ds_list_find_value(_powerUps, i).OnTakeDamage(_damage, _health); 
 	}
 	
 	_health = clamp(_health - _damage, 0, _maxHealth);

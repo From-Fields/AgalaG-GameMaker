@@ -31,5 +31,4 @@ DoRotation = function() {
 DoRotation();
 DoScale();
 
-velocity = new Vector2(phy_linear_velocity_x, phy_linear_velocity_y);
-show_debug_message(velocity.String());
+_velocity = new Vector2(phy_linear_velocity_x, phy_linear_velocity_y);

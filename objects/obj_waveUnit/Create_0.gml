@@ -5,7 +5,7 @@
 Create = function (
 	enemy,
 	startingPoint, startingAction, timeoutAction, actions, 
-	onDeath = undefined, onRelease = undefined, timeout = -1, drop_ = undefined
+	onDeath = undefined, drop_ = undefined, onRelease = undefined, timeout = -1
 ) {
 	if(!instance_exists(enemy)){
 		enemy = instance_create_layer(0, 0, "Instances", enemy);

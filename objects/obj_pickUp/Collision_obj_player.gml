@@ -18,3 +18,4 @@ instance_deactivate_object(id);
 Pool().Release(id);
 
 
+show_debug_message("Taken!")

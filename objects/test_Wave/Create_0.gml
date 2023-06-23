@@ -30,7 +30,8 @@ CreateWave = function()
         new MoveAndShoot(new Vector2(1366 - 300, 300), 0.7),
         new MoveTowards(new Vector2(1366 + 60, 350), 1.5),
 		queueB,
-		LogScore
+		LogScore,
+		new ShieldPowerUp()
 	);
 	
 	ds_list_add(unitList, unitA);

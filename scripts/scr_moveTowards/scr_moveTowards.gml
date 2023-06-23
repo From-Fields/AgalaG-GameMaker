@@ -58,7 +58,7 @@ function MoveTowards(
             //show_debug_message(string(distance) + " vector: " + _targetPosition.String() + " Multiplier: " + string(decelerationMultiplier));
         }
 
-		show_debug_message(_decelerationMultiplier)
+		//show_debug_message(_decelerationMultiplier)
 
         return _currentVelocity.Add(_steeringVector).Normalized();
 	}

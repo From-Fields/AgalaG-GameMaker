@@ -19,10 +19,8 @@ function PickUpPool() constructor {
 	}
 	onGetAction = function(entity) {
 		//show_debug_message("Got")
-		return obj_pickUp.onGetFromPool(entity) 
 	}
 	onReleaseAction = function(entity) { 
 		//show_debug_message("Released")
-		return obj_pickUp.onReleaseToPool(entity) 
 	}
 }

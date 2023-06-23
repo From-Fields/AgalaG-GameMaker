@@ -43,11 +43,10 @@ Initialize = function(
 	visible = true;
 	instance_activate_object(id);
             
+	_velocity = undefined;
 	_direction = direction_;
 	_speed = speed_;
     ApplyPhisicsMovement(direction_, speed_);
 }
 
 Pool  = function() { return new PickUpPool().Instance(); }
-onGetFromPool = function() { }
-onReleaseToPool = function() { }

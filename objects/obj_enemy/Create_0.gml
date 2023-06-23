@@ -99,7 +99,7 @@ Die = function() {
 		
 		var position = new Vector2(phy_position_x, phy_position_y);
 
-        new PickUpPool().Instance.Get().Initialize(_drop, position, randomDirection);
+        new PickUpPool().Instance().Get().Initialize(_drop, position, randomDirection);
     }
 	
 	Reserve();

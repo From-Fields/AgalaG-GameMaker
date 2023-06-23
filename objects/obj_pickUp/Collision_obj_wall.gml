@@ -1,12 +1,13 @@
 /// @description Insert description here
 // You can write your code in this editor
 
-show_debug_message("Collided!")
+if(_velocity == undefined) {
+	_velocity = new Vector2(_direction.Multiply(_speed * delta_time / 1000000));
+}
 
 normal = new Vector2(phy_col_normal_x, phy_col_normal_y);
-show_debug_message("Normal: " + normal.String());
 
-targetVelocity = velocity.Reflect(normal.Normalized());
+targetVelocity = _velocity.Reflect(normal.Normalized());
 
 phy_linear_velocity_x = 0;
 phy_linear_velocity_y = 0;
