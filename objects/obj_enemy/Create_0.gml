@@ -20,13 +20,9 @@ _startingAction = undefined;
 _timeoutAction = undefined;
 _currentAction = undefined;
 
-_defaultCollisionDamage = 1;
-_collisionDamage = 0;
-
 onRelease = new EventListener();
 onDeath = new EventListener();
 
-SubInitialize = function() {}
 Initialize = function(actionQueue, startingAction, timeoutAction, position) {
 	if(actionQueue == undefined || timeoutAction == undefined)	
 		return;
@@ -36,15 +32,12 @@ Initialize = function(actionQueue, startingAction, timeoutAction, position) {
 	_startingAction = startingAction;
 	_timeoutAction = timeoutAction;
 
-	x = position._x;
-	y = position._y;
 	phy_position_x = position._x;	
 	phy_position_y = position._y;	
 	phy_active = true;
 	visible = true;
 	instance_activate_object(id);
 
-	SubInitialize();
 
 	if(startingAction != undefined)
 		ExecuteStartingAction();
@@ -87,10 +80,10 @@ Die = function() {
 	onDeath.Invoke(_score);
 	Reserve();
 }
-ReserveToPool = function() {}
-SubReserve = function() {}
-Reserve = function() {
+Reserve = function() { }
+OnReserve = function() {
 	_isDead = true;
+	onRelease.Invoke();
 	
 	_actionQueue = ds_queue_create();
 	_startingAction = undefined;
@@ -98,16 +91,13 @@ Reserve = function() {
 	_currentAction = undefined;
 	
 	onDeath.Clear();
+	onRelease.Clear();
 	
 	phy_active = false;
 	visible = false;
 	instance_deactivate_object(id);
-	
-	SubReserve();
-	ReserveToPool();
-	onRelease.Invoke();
 }
 
 //Poolable Implementation
 //onGetFromPool = function(obj) { instance_activate_object(obj); }
-onReleaseToPool = function(obj) { }
+onReleaseToPool = function(obj) { obj.OnReserve(); }
