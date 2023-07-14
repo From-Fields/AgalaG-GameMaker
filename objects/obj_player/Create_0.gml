@@ -20,7 +20,6 @@ _health = _maxHealth;
 
 _powerUps = ds_list_create();
 _inputHandler = new InputHandler().Instance();
-onDeath = new EventListener();
 
 // Methods
 SwitchWeapon = function(_newWeapon) {
@@ -61,17 +60,13 @@ TakeDamage = function(_amount) {
 Move = function(_direction, _speed, _acceleration) {
 	ApplyPhisicsMovement(_direction, _speed, _acceleration);
 }
-Stop = function() {
-	ApplyPhisicsMovement(new Vector2(0, 0), 0, 0.9);
-}
 
 Shoot = function() {
-	_currentWeapon.Shoot(_position());
+	_currentWeapon.Shoot(new Vector2(x, y));
 }
 
 Die = function(){
 	//show_debug_message("NANI");
 	_isDead = true;
 	visible = false;
-	onDeath.Invoke();
 }

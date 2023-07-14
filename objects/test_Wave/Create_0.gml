@@ -25,9 +25,9 @@ CreateWave = function()
 	ds_queue_enqueue(queueB, new MoveTowards(new Vector2(1366 - 150, 450), 1.5, 1, 0.8));
 	unitB = instance_create_layer(0, 0, "Controller", obj_waveUnit);
 	unitB.Create(
-		obj_enemy_gemini,
+		obj_enemy_kamikaze,
 		new Vector2(1366 - 300, -60),
-        new MoveAndShoot(new Vector2(1366 - 300, 300), 0.7),
+        new MoveTowards(new Vector2(1366 - 300, 300), 0.7),
         new MoveTowards(new Vector2(1366 + 60, 350), 1.5),
 		queueB,
 		LogScore
