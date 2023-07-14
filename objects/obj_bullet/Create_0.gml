@@ -6,12 +6,15 @@ _isPlayer = true;
 
 alarm[0] = room_speed * 2.5;
 
-Initialize = function(dir, spd, isPlayer, spr = spr_bullet, dmg = 1) {
-	_direction = dir;
-	_speed = spd;
-	_sprite = spr;
-	_damage = dmg;
+Initialize = function(damage, direction_, speed_, isPlayer, sprite = spr_bullet) {
+	_direction = direction_;
+	_speed = speed_;
+	_sprite = sprite;
+	_damage = damage;
 	_isPlayer = isPlayer;
+	
+	if(direction_._y > 0)
+		image_angle = 180;
 	
 	sprite_index = _sprite;
 }

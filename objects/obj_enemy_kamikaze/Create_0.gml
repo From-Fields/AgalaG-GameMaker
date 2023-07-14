@@ -2,20 +2,29 @@
 // You can write your code in this editor
 event_inherited()
 
-_health = 1;
-_suicideDamage = 1;
+_defaultHealth = 1;
+_currentHealth = 1;
+_defaultCollisionDamage = 1;
 _score = 10;
 
+SubInitialize = function() {
+	_maxHealth = _defaultHealth;
+	_currentHealth = _defaultHealth;
+}
+
 //Entity Implementation
-Shoot = function() { }
+Shoot = function() {}
 TakeDamage = function(_amount) {
-	_health = clamp(_health - _amount, 0, _maxHealth);
+	_currentHealth = clamp(_currentHealth - _amount, 0, _maxHealth);
 	
-	if(_health == 0)
+	if(_currentHealth == 0)
 		Die();
 }
 Move = function(_direction, _speed, _acceleration) {
 	ApplyPhisicsMovement(_direction, _speed, _acceleration);	
+}
+Stop = function() {
+	ApplyPhisicsMovement(new Vector2(0, 0), 0, 0.9);
 }
 
 //Poolable Implementation
