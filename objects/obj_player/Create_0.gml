@@ -24,6 +24,7 @@ onDeath = new EventListener();
 
 // Methods
 SwitchWeapon = function(_newWeapon) {
+	show_debug_message("change weapon");
 	if(_newWeapon != noone)	
 		_currentWeapon = _newWeapon;
 }
@@ -80,6 +81,10 @@ Stop = function() {
 
 Shoot = function() {
 	_currentWeapon.Shoot(_position());
+	
+	if (_currentWeapon.isEmpty()) {
+		SwitchDefaultWeapon();
+	}
 }
 
 Die = function(){
