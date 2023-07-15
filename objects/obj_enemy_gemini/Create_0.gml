@@ -16,6 +16,7 @@ _childPool = new EnemyGeminiChildPool().Instance();
 _score = 10;
 
 SubInitialize = function() {
+	visible = false;
 	_maxHealth = _defaultHealth;
 	_currentHealth = _defaultHealth;
 }
@@ -93,5 +94,5 @@ SubReserve = function() {
 
 //Poolable Implementation
 CreateFunction = function() { return instance_create_layer(0, 0, "Instances", obj_enemy_gemini); }
-Reserve = function() { Pool().Release(id); }
+ReserveToPool = function() { Pool().Release(id); }
 Pool = function() { return new EnemyGeminiPool().Instance(); }

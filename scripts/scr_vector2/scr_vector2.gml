@@ -63,4 +63,17 @@ function Vector2(_initX = 0, _initY = 0) constructor{
 		
 		return new Vector2(x_, y_);
 	}
+	Reflect = function(normal) {
+		var vector = new Vector2(_x, _y);
+		
+		if(normal.Length() != 1)
+			normal.Normalize();
+			
+		if(Length() != 1)
+			vector.Normalize();
+		
+		var dot = dot_product(vector._x, vector._y, normal._x, normal._y);
+        
+        return vector.Subtract(normal.Multiply(2 * dot));
+	}
 }

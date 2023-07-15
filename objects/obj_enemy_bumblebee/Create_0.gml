@@ -3,7 +3,7 @@
 event_inherited()
 
 _weaponDamage = 1;
-_weaponCooldown = 0.5;
+_weaponCooldown = 0.8;
 _missileSpeed = 50;
 
 _bulletSprite = spr_bullet_bumblebee;
@@ -32,7 +32,7 @@ SubInitialize = function() {
 
 
 SetWeapon = function(weaponCooldown, missileDamage, missileSpeed) {
-    _weapon.SetAttributes(missileSpeed, missileDamage, weaponCooldown, new Vector2(0, 1), -1, new Vector2(25, 100));
+    _weapon.SetAttributes(missileSpeed, missileDamage, weaponCooldown, new Vector2(0, 1), -1, new Vector2(100, 100));
 }
 
 //Entity Implementation
@@ -54,5 +54,5 @@ Stop = function() {
 
 //Poolable Implementation
 CreateFunction = function() { return instance_create_layer(0, 0, "Instances", obj_enemy_bumblebee); }
-Reserve = function() { Pool().Release(id); }
+ReserveToPool = function() { Pool().Release(id); }
 Pool = function() { return new EnemyBumblebeePool().Instance(); }
