@@ -32,6 +32,11 @@ SwitchDefaultWeapon = function() {
 }
 
 AddPowerUp = function(_newPowerUp) {
+	_newPowerUp.OnPickup(id);
+
+    if(_newPowerUp.isInstant)
+        return;
+	
 	if(_newPowerUp != noone && ds_list_find_index(_powerUps, _newPowerUp) == -1) {
 		ds_list_add(_powerUps, _newPowerUp);
 	}
@@ -45,12 +50,20 @@ RemovePowerUp = function(_powerUp) {
 }
 
 Heal = function(_amount) {
-	_health = clamp(_health + _amount, 0, _maxHealth);	
+	show_debug_message("Heal: " + string(_amount) + " + " + string(_health));
+	_health = clamp(_health + _amount, 0, _maxHealth);
+	show_debug_message(string(_health));
 }
 
 // Interface Implementation
 TakeDamage = function(_amount) {
-	_health = clamp(_health - _amount, 0, _maxHealth);
+	_damage = _amount;
+
+	for (i = 0; i < ds_list_size(_powerUps); i++) {
+	    _damage = ds_list_find_value(_powerUps, i).OnTakeDamage(_damage, _health); 
+	}
+	
+	_health = clamp(_health - _damage, 0, _maxHealth);
 	
 	if(_health == 0) {
 		Die();
@@ -67,6 +80,14 @@ Shoot = function() {
 
 Die = function(){
 	//show_debug_message("NANI");
+	die = true;    
+
+    for (i = 0; i < ds_list_size(_powerUps); i++)
+        die = ds_list_find_value(_powerUps, i).OnDeath();
+
+    if(!die)
+        return;
+		
 	_isDead = true;
 	visible = false;
 }
