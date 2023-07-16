@@ -115,9 +115,9 @@
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Bullet","folderPath":"folders/Sprites/Bullet.yy","order":0,},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Entity","folderPath":"folders/Sprites/Entity.yy","order":0,},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"PowerUp","folderPath":"folders/Sprites/PowerUp.yy","order":1,},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Utils","folderPath":"folders/Sprites/Utils.yy","order":2,},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Tile Sets","folderPath":"folders/Tile Sets.yy","order":0,},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Timelines","folderPath":"folders/Timelines.yy","order":0,},
-    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Utils","folderPath":"folders/Sprites/Utils.yy","order":2,},
   ],
   "AudioGroups": [
     {"resourceType":"GMAudioGroup","resourceVersion":"1.3","name":"audiogroup_default","targets":-1,},

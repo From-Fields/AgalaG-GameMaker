@@ -66,9 +66,9 @@ function MissileWeapon (isPlayer = true, sprite_ = spr_bullet, bullet = obj_bull
 	_spawnPoint = new Vector2(0, -20);
 	_speed = 20;
 	_damage = 2;
-	_cooldown = 1.3;
+	_cooldown = 0.8;
 	_direction = new Vector2(0, -1);
-	_maxAmmunition = 20;
+	_maxAmmunition = 15;
 	_currentAmmunition = _maxAmmunition;
 	
 	_sprite = spr_missile;
@@ -104,7 +104,6 @@ function MissileWeapon (isPlayer = true, sprite_ = spr_bullet, bullet = obj_bull
 	}
 	
 	isEmpty = function() {
-		//show_debug_message("current ammunition: " + string(_currentAmmunition) + "\n" + string(_currentAmmunition <= 0));
 		return (_currentAmmunition <= 0);
 	}
 }
@@ -116,6 +115,8 @@ function TripleMachineGun(isPlayer = true, sprite_ = spr_bullet, bullet = obj_bu
 	_damage = 1;
 	_cooldown = 0.1;
 	_direction = new Vector2(0, -1);
+	_maxAmmunition = 100;
+	_currentAmmunition = _maxAmmunition;
 	
 	_sprite = sprite_;
 	_isPlayer = isPlayer;
@@ -132,6 +133,7 @@ function TripleMachineGun(isPlayer = true, sprite_ = spr_bullet, bullet = obj_bu
 			var bullet_inst = instance_create_layer(_spawnPoint[i]._x + position._x, _spawnPoint[i]._y + position._y, _layer, _bullet);
 			bullet_inst.Initialize(_damage, _direction, _speed, _isPlayer, _sprite);
 		}
+		_currentAmmunition--;
 	}
 	
 	StartCooldown = function()  {
@@ -141,7 +143,12 @@ function TripleMachineGun(isPlayer = true, sprite_ = spr_bullet, bullet = obj_bu
         _canShoot = false;
 		time_source_start(time_source_create(time_source_game, _cooldown, time_source_units_seconds, OnCooldownEnd));
     }
+	
     OnCooldownEnd = function() {
 		_canShoot = true;
+	}
+	
+	isEmpty = function() {
+		return (_currentAmmunition <= 0);
 	}
 }
