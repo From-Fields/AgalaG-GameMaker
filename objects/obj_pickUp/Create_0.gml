@@ -34,11 +34,8 @@ Initialize = function(
     
 	phy_active = true;
 	
-    x = position._x;
-    y = position._y;
-    phy_position_x = position._x;
-    phy_position_y = position._y;
-    
+	SetPosition(position._x, position._y);
+	
 	phy_fixed_rotation = true;
 	visible = true;
 	instance_activate_object(id);
@@ -47,6 +44,25 @@ Initialize = function(
 	_direction = direction_;
 	_speed = speed_;
     ApplyPhisicsMovement(direction_, speed_);
+}
+
+SetPosition = function(_x, _y) {
+	if(_x <= 0)	
+		_x = sprite_width;
+	if(_x >= room_width)
+		_x = room_width - sprite_width
+		
+		
+	if(_y <= 0)	
+		_y = sprite_height;
+	if(_y >= room_height)
+		_y = room_height - sprite_height
+		
+		
+    x = _x;
+    y = _y;
+    phy_position_x = _x;
+    phy_position_y = _y;
 }
 
 Pool  = function() { return new PickUpPool().Instance(); }
