@@ -7,7 +7,7 @@
     "path": "sprites/spr_bullet_bumblebee/spr_bullet_bumblebee.yy",
   },
   "solid": false,
-  "visible": false,
+  "visible": true,
   "managed": true,
   "spriteMaskId": {
     "name": "spr_bullet_bumblebee",

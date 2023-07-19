@@ -2,6 +2,7 @@
 // You can write your code in this editor
 event_inherited()
 
+visible = false;
 _geminiPositionOffset = 100;
 _orbitingVelocity = 1;
 _geminiMissileDamage = 1;
@@ -14,12 +15,6 @@ _children = ds_list_create();
 _childPool = new EnemyGeminiChildPool().Instance();
 
 _score = 10;
-
-SubInitialize = function() {
-	visible = false;
-	_maxHealth = _defaultHealth;
-	_currentHealth = _defaultHealth;
-}
 
 //Entity Implementation
 TakeDamage = function(_amount) {
@@ -58,6 +53,7 @@ Shoot = function() {
 
 SubInitialize = function()
 {
+	visible = false;
     _isDead = false;
     _maxHealth = _defaultHealth;
     _currentHealth = _defaultHealth;
