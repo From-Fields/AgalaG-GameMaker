@@ -1,11 +1,11 @@
 {
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
-  "name": "Weapon",
+  "name": "scr_missileWeaponPowerUp",
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "PlayerBehaviour",
-    "path": "folders/Scripts/PlayerBehaviour.yy",
+    "name": "Weapons",
+    "path": "folders/Scripts/PowerUps/Weapons.yy",
   },
 }
