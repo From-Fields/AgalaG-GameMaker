@@ -1,0 +1,70 @@
+// Script assets have changed for v2.3.0 see
+// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
+
+//Constructor
+Create = function (
+	hazard,
+	startingPoint, direction_,
+	maxBounces = 0, waitForTimeout = false, scale_ = new Vector2(1, 1),
+	onRelease = undefined, damage_ = 1, health_ = 1, sprite_ = spr_hazard_a, 
+	speed_ = 1200, rotationSpeed_ = 150, timeout = -1
+) {
+	if(!instance_exists(hazard)){
+		hazard = instance_create_layer(0, 0, "Instances", hazard);
+		hazard.ReserveToPool();
+	}
+	
+	_hazard = hazard.Pool().Get();
+	_startingPoint = startingPoint;
+	
+	_direction = direction_;
+	_speed = speed_;
+	_rotationSpeed = rotationSpeed_;
+	_scale = scale_;
+	_sprite = sprite_;
+	
+	_damage = damage_;
+	_health = health_;
+	_maxBounces = maxBounces;
+	
+	_waitForTimeout = waitForTimeout;
+	
+	_onUnitReleased = new EventListener();
+
+	if(onRelease != undefined)
+		_hazard.onRelease.AddListener(onRelease);
+		
+	_hazard.onRelease.AddListener(OnRelease)
+
+	_timeout = timeout;
+	_hasTimedOut = false;
+}
+	
+// Methods
+Initialize = function() {
+	_hazard.Initialize(
+		_startingPoint, _direction, _maxBounces, 
+		_health, _damage,
+		_speed, true, _rotationSpeed,
+		_scale, _sprite
+	);
+	
+
+    if(_waitForTimeout && _timeout > 0)
+        alarm[0] = room_speed * _timeout;
+	else if(!_waitForTimeout)
+		time_source_start(time_source_create(time_source_game, 0.5, time_source_units_seconds, OnRelease));
+}
+ExecuteTimeoutAction = function() {
+    if(_hasTimedOut)
+        return;
+
+    _hasTimedOut = true;
+	
+    OnRelease();
+}
+OnRelease = function() {
+	 _hazard.onRelease.RemoveListener(OnRelease);
+	 _onUnitReleased.Invoke(id);
+}
+Reserve = function() { return _hazard.ReserveToPool(); }

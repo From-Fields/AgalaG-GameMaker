@@ -18,10 +18,12 @@ visible = false;
 instance_deactivate_object(id);
 
 Initialize = function(
-    powerUp, position, direction_, speed_ = 750, 
-    rotate = true, rotationSpeed = 100, 
+    powerUp, position, direction_, speed_ = 900, 
+    rotate = true, rotationSpeed = 150, 
     doScale = true, maximumScale = 1.3, scaleSpeed = 5
 ) {
+	_bounceCooldown = true;
+	
     _rotate = rotate;
     _doScale = doScale;
     _rotationSpeed = rotationSpeed;
@@ -66,3 +68,4 @@ SetPosition = function(_x, _y) {
 }
 
 Pool  = function() { return new PickUpPool().Instance(); }
+ResetCooldown = function() { _bounceCooldown = true; }

@@ -35,8 +35,17 @@ CreateWave = function()
 		new MissileWeaponPowerUp()
 	);
 	
-	ds_list_add(unitList, unitA);
-	ds_list_add(unitList, unitB);
+	hazardA = instance_create_layer(0, 0, "Controller", obj_waveHazard);
+	hazardA.Create(
+		obj_hazard,
+		new Vector2(1366 - 300, -200), 
+		new Vector2(-0.3, 1), 
+		3, true
+	)
+	
+	// ds_list_add(unitList, unitA);
+	// ds_list_add(unitList, unitB);
+	ds_list_add(unitList, hazardA);
 
 	wave.Create(10, unitList);
 
