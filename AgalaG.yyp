@@ -11,6 +11,7 @@
     {"id":{"name":"scr_enemyKamikazePool","path":"scripts/scr_enemyKamikazePool/scr_enemyKamikazePool.yy",},"order":0,},
     {"id":{"name":"test_Wave","path":"objects/test_Wave/test_Wave.yy",},"order":0,},
     {"id":{"name":"spr_missile","path":"sprites/spr_missile/spr_missile.yy",},"order":3,},
+    {"id":{"name":"spr_game_background","path":"sprites/spr_game_background/spr_game_background.yy",},"order":3,},
     {"id":{"name":"obj_enemy","path":"objects/obj_enemy/obj_enemy.yy",},"order":0,},
     {"id":{"name":"scr_moveTowards","path":"scripts/scr_moveTowards/scr_moveTowards.yy",},"order":0,},
     {"id":{"name":"spr_hazard_a","path":"sprites/spr_hazard_a/spr_hazard_a.yy",},"order":5,},
