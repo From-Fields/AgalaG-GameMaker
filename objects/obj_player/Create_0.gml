@@ -5,6 +5,7 @@ event_inherited()
 phy_fixed_rotation = true;
 
 // Attributes
+_isInvulnerable = false;
 _isDead = false;
 _defaultWeapon = new DefaultWeapon();
 _currentWeapon = _defaultWeapon;
@@ -29,6 +30,8 @@ _damageSound = sfx_dmg_player;
 _powerUpSound = sfx_powerup;
 
 _moveSoundInstance = audio_play_sound_on(_audioEmitter, _moveSound, true, 0);
+
+_frameAccumulator = 0;
 
 // Methods
 SwitchWeapon = function(_newWeapon) {
@@ -72,6 +75,9 @@ Heal = function(_amount) {
 
 // Interface Implementation
 TakeDamage = function(_amount) {
+	if(_isInvulnerable)
+		return;
+	
 	_damage = _amount;
 
 	for (i = 0; i < ds_list_size(_powerUps); i++) {
@@ -84,9 +90,17 @@ TakeDamage = function(_amount) {
 	
 	_health = clamp(_health - _damage, 0, _maxHealth);
 	
+	SetInvulnerability(true);
+	
 	if(_health == 0) {
 		Die();
 	}
+}
+
+SetInvulnerability = function(isInvulnerable = false) {
+	_isInvulnerable = isInvulnerable;
+	if(isInvulnerable)	
+		time_source_start(time_source_create(time_source_game, 1.5, time_source_units_seconds, SetInvulnerability));
 }
 
 Move = function(_direction, _speed, _acceleration) {
