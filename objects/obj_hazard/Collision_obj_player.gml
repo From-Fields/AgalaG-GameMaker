@@ -4,4 +4,4 @@
 
 other.TakeDamage(_damage);
 
-ReserveToPool();
+Die();

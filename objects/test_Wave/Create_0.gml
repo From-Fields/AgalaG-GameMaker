@@ -19,7 +19,7 @@ CreateWave = function()
         new MoveTowards(new Vector2(-60, 350), 1.5),
 		queueA,
 		LogScore,
-		new MultishotWeaponPowerUp()
+		new ShieldPowerUp()
 	);
 	
 	queueB = ds_queue_create();
@@ -43,8 +43,8 @@ CreateWave = function()
 		3, true
 	)
 	
-	// ds_list_add(unitList, unitA);
-	// ds_list_add(unitList, unitB);
+	ds_list_add(unitList, unitA);
+	ds_list_add(unitList, unitB);
 	ds_list_add(unitList, hazardA);
 
 	wave.Create(10, unitList);

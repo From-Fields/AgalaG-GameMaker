@@ -16,6 +16,8 @@ y = 0;
 
 visible = false;
 instance_deactivate_object(id);
+_audioEmitter = audio_emitter_create();
+_bounceSound = sfx_bounce;
 
 Initialize = function(
     powerUp, position, direction_, speed_ = 900, 

@@ -22,11 +22,21 @@ _powerUps = ds_list_create();
 _inputHandler = new InputHandler().Instance();
 onDeath = new EventListener();
 
+_shotSound = sfx_shot_player;
+_moveSound = sfx_move_player;
+_deathSound = sfx_death_player;
+_damageSound = sfx_dmg_player;
+_powerUpSound = sfx_powerup;
+
+_moveSoundInstance = audio_play_sound_on(_audioEmitter, _moveSound, true, 0);
+
 // Methods
 SwitchWeapon = function(_newWeapon) {
 	show_debug_message("change weapon");
 	if(_newWeapon != noone)	
 		_currentWeapon = _newWeapon;
+		
+	_currentWeapon.SetWeaponAudio(_shotSound, _audioEmitter);
 }
 
 SwitchDefaultWeapon = function() {
@@ -36,11 +46,14 @@ SwitchDefaultWeapon = function() {
 AddPowerUp = function(_newPowerUp) {
 	_newPowerUp.OnPickup(id);
 
-    if(_newPowerUp.isInstant)
+    if(_newPowerUp.isInstant) {
+		audio_play_sound_on(_audioEmitter, _powerUpSound, false, 5);
         return;
+	}
 	
 	if(_newPowerUp != noone && ds_list_find_index(_powerUps, _newPowerUp) == -1) {
 		ds_list_add(_powerUps, _newPowerUp);
+		audio_play_sound_on(_audioEmitter, _powerUpSound, false, 5);
 	}
 }
 RemovePowerUp = function(_powerUp) {
@@ -63,7 +76,11 @@ TakeDamage = function(_amount) {
 
 	for (i = 0; i < ds_list_size(_powerUps); i++) {
 	    _damage = ds_list_find_value(_powerUps, i).OnTakeDamage(_damage, _health); 
+		if(_damage == 0)
+			return;
 	}
+	
+	audio_play_sound_on(_audioEmitter, _damageSound, false, 0);
 	
 	_health = clamp(_health - _damage, 0, _maxHealth);
 	
@@ -99,5 +116,13 @@ Die = function(){
 		
 	_isDead = true;
 	visible = false;
+	
+	audio_play_sound_on(_audioEmitter, _deathSound, false, 10);
+	
+	if(_moveSoundInstance != noone)
+		audio_stop_sound(_moveSoundInstance);
+	
 	onDeath.Invoke();
 }
+
+SwitchDefaultWeapon();

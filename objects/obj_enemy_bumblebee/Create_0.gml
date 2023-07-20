@@ -15,6 +15,9 @@ _defaultCollisionDamage = 1;
 
 _score = 10;
 
+_shotSound = sfx_shot_bumble;
+_moveSound = sfx_move_bumble;
+
 SubInitialize = function() {
 	_maxHealth = _defaultHealth;
 	_currentHealth = _defaultHealth;
@@ -33,6 +36,7 @@ SubInitialize = function() {
 
 SetWeapon = function(weaponCooldown, missileDamage, missileSpeed) {
     _weapon.SetAttributes(missileSpeed, missileDamage, weaponCooldown, new Vector2(0, 1), -1, new Vector2(100, 100));
+	_weapon.SetWeaponAudio(_shotSound, _audioEmitter);
 }
 
 //Entity Implementation

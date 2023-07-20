@@ -6,6 +6,9 @@ function Weapon(bullet) constructor {
 	_speed = 2;
 	_layer = "Instances"
 	
+	_audioId = noone;
+	_audioEmitter = noone;
+	
 	Initialize = function() {
 	}
 	
@@ -14,6 +17,12 @@ function Weapon(bullet) constructor {
 	
 	Shoot = function(position) {
 		//show_debug_message("PEW!");
+	}
+	
+	SetWeaponAudio = function(audioId, audioEmitter) {
+		show_debug_message("Setup audio")
+		_audioId = audioId;
+		_audioEmitter = audioEmitter;
 	}
 }
 
@@ -39,6 +48,9 @@ function DefaultWeapon(isPlayer = true, sprite_ = spr_bullet, bullet = obj_bulle
 		
 		var bullet_inst = instance_create_layer(_spawnPoint._x + position._x, _spawnPoint._y + position._y, _layer, _bullet);
 		bullet_inst.Initialize(_damage, _direction, _speed, _isPlayer, _sprite);
+		
+		if(_audioEmitter != noone && _audioId != noone)
+			audio_play_sound_on(_audioEmitter, _audioId, false, 3);
 	}
 	
 	StartCooldown = function()  {
@@ -89,6 +101,9 @@ function MissileWeapon (isPlayer = true, sprite_ = spr_bullet, bullet = obj_bull
 		var bullet_inst = instance_create_layer(_spawnPoint._x + position._x, _spawnPoint._y + position._y, _layer, _bullet);
 		bullet_inst.Initialize(_damage, _direction, _speed, _isPlayer, _sprite, 1.5, true, 1.5);
 		_currentAmmunition--;
+		
+		if(_audioEmitter != noone && _audioId != noone)
+			audio_play_sound_on(_audioEmitter, _audioId, false, 3);
 	}
 	
 	StartCooldown = function()  {
@@ -134,6 +149,9 @@ function TripleMachineGun(isPlayer = true, sprite_ = spr_bullet, bullet = obj_bu
 			bullet_inst.Initialize(_damage, _direction, _speed, _isPlayer, _sprite);
 		}
 		_currentAmmunition--;
+		
+		if(_audioEmitter != noone && _audioId != noone)
+			audio_play_sound_on(_audioEmitter, _audioId, false, 3);
 	}
 	
 	StartCooldown = function()  {

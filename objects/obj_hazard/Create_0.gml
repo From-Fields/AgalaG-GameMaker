@@ -26,6 +26,8 @@ y = 0;
 visible = false;
 instance_deactivate_object(id);
 _boundFixture = undefined;
+_deathSound = sfx_death_enemy;
+_bounceSound = sfx_bounce;
 
 Initialize = function(
     position, direction_, 
@@ -100,6 +102,7 @@ TakeDamage = function(_amount) {
 }
 
 Die = function() {
+	audio_play_sound_on(_audioEmitter, _deathSound, false, 3);
 	ReserveToPool();
 }
 

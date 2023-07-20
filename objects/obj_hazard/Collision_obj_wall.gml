@@ -18,6 +18,8 @@ phy_linear_velocity_y = 0;
 
 ApplyPhisicsMovement(targetVelocity, _speed)
 
+audio_play_sound_on(_audioEmitter, _bounceSound, false, 3);
+
 _currentBounces++;
 _bounceCooldown = false;
 if(_currentBounces >= _maxBounces) 

@@ -4,6 +4,8 @@ function ShieldPowerUp(): PowerUp() constructor{
 	sprite = spr_powerup_shield;
 	isInstant = false;
 	
+	_damageSound = sfx_dmg_shield;
+	
 	OnPickup = function(player) {
 		_player = player;
 	}
@@ -11,7 +13,7 @@ function ShieldPowerUp(): PowerUp() constructor{
         if(damage <= 0)
             return damage;
 		
-		show_debug_message("Shielded");
+		audio_play_sound_on(_player._audioEmitter, _damageSound, false, 5);
 
         EndPowerUp();
         return damage - 1;

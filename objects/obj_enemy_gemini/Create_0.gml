@@ -16,6 +16,8 @@ _childPool = new EnemyGeminiChildPool().Instance();
 
 _score = 10;
 
+_moveSound = sfx_move_gemini;
+
 //Entity Implementation
 TakeDamage = function(_amount) {
 	_currentHealth = clamp(_currentHealth - _amount, 0, _maxHealth);

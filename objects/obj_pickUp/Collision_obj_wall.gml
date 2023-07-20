@@ -17,5 +17,6 @@ phy_linear_velocity_y = 0;
 
 ApplyPhisicsMovement(targetVelocity, _speed)
 _bounceCooldown = false;
+audio_play_sound_on(_audioEmitter, _bounceSound, false, 3);
 
 time_source_start(time_source_create(time_source_game, 10, time_source_units_frames, ResetCooldown));

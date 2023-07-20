@@ -28,6 +28,11 @@ _drop = undefined;
 onRelease = new EventListener();
 onDeath = new EventListener();
 
+_shotSound = noone;
+_moveSound = noone;
+_deathSound = sfx_death_enemy;
+_moveSoundInstance = noone;
+
 SubInitialize = function() {}
 Initialize = function(actionQueue, startingAction, timeoutAction, position, drop_ = undefined) {
 	if(actionQueue == undefined || timeoutAction == undefined)	
@@ -49,6 +54,9 @@ Initialize = function(actionQueue, startingAction, timeoutAction, position, drop
 	_drop = drop_;
 
 	SubInitialize();
+
+	if(_moveSound != noone)
+		_moveSoundInstance = audio_play_sound_on(_audioEmitter, _moveSound, true, 0);
 
 	if(startingAction != undefined)
 		ExecuteStartingAction();
@@ -101,6 +109,11 @@ Die = function() {
 
         new PickUpPool().Instance().Get().Initialize(_drop, position, randomDirection);
     }
+
+	if(_moveSoundInstance != noone)
+		audio_stop_sound(_moveSoundInstance);
+	if(_deathSound != noone)
+		audio_play_sound_on(_audioEmitter, _deathSound, false, 0);
 	
 	Reserve();
 }
