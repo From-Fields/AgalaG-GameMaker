@@ -29,7 +29,7 @@ _deathSound = sfx_death_player;
 _damageSound = sfx_dmg_player;
 _powerUpSound = sfx_powerup;
 
-_moveSoundInstance = audio_play_sound_on(_audioEmitter, _moveSound, true, 0);
+_moveSoundInstance = audio_play_sound_on(_audioEmitter, _moveSound, true, 0, 0.002);
 
 _frameAccumulator = 0;
 
