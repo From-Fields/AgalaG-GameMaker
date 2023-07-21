@@ -70,6 +70,8 @@
     {"id":{"name":"spr_bullet","path":"sprites/spr_bullet/spr_bullet.yy",},"order":0,},
     {"id":{"name":"spr_powerup_multishot","path":"sprites/spr_powerup_multishot/spr_powerup_multishot.yy",},"order":2,},
     {"id":{"name":"spr_bullet_gemini","path":"sprites/spr_bullet_gemini/spr_bullet_gemini.yy",},"order":1,},
+    {"id":{"name":"sfx_explosion","path":"sounds/sfx_explosion/sfx_explosion.yy",},"order":2,},
+    {"id":{"name":"obj_audioLoader","path":"objects/obj_audioLoader/obj_audioLoader.yy",},"order":3,},
     {"id":{"name":"scr_UIManager","path":"scripts/scr_UIManager/scr_UIManager.yy",},"order":0,},
     {"id":{"name":"obj_poolable","path":"objects/obj_poolable/obj_poolable.yy",},"order":0,},
     {"id":{"name":"scr_eventListener","path":"scripts/scr_eventListener/scr_eventListener.yy",},"order":0,},
