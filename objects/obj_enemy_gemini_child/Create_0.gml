@@ -23,6 +23,8 @@ _currentHealth = 1;
 _defaultCollisionDamage = 1;
 _score = 10;
 
+_shotSound = sfx_shot_gemini;
+
 SetParent = function(parent, positionOffset, orbitingVelocity) {
     _parent = parent;
     _positionOffset = positionOffset;
@@ -30,6 +32,7 @@ SetParent = function(parent, positionOffset, orbitingVelocity) {
 }
 SetWeapon = function(weaponCooldown, missileDamage, missileSpeed) {
     _weapon.SetAttributes(missileSpeed, missileDamage, weaponCooldown, new Vector2(0, 1), -1, new Vector2(50, 50));
+	_weapon.SetWeaponAudio(_shotSound, _audioEmitter);
 }
 
 SubInitialize = function() {
@@ -52,7 +55,7 @@ SubReserve = function() {
 
 //Entity Implementation
 Shoot = function() {
-	if(!_isDead)
+	if(!_isDead) 
 		_weapon.Shoot(_position());
 }
 TakeDamage = function(_amount) {

@@ -7,6 +7,8 @@ _currentHealth = 1;
 _defaultCollisionDamage = 1;
 _score = 10;
 
+_moveSound = sfx_move_kamikaze;
+
 SubInitialize = function() {
 	_maxHealth = _defaultHealth;
 	_currentHealth = _defaultHealth;

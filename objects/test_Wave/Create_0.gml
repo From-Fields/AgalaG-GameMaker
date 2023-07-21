@@ -18,7 +18,8 @@ CreateWave = function()
         new MoveTowards(new Vector2(300, 300), 0.7),
         new MoveTowards(new Vector2(-60, 350), 1.5),
 		queueA,
-		LogScore
+		LogScore,
+		new ShieldPowerUp()
 	);
 	
 	queueB = ds_queue_create();
@@ -31,11 +32,20 @@ CreateWave = function()
         new MoveTowards(new Vector2(1366 + 60, 350), 1.5),
 		queueB,
 		LogScore,
-		new ShieldPowerUp()
+		new MissileWeaponPowerUp()
 	);
+	
+	hazardA = instance_create_layer(0, 0, "Controller", obj_waveHazard);
+	hazardA.Create(
+		obj_hazard,
+		new Vector2(1366 - 300, -200), 
+		new Vector2(-0.3, 1), 
+		3, true
+	)
 	
 	ds_list_add(unitList, unitA);
 	ds_list_add(unitList, unitB);
+	ds_list_add(unitList, hazardA);
 
 	wave.Create(10, unitList);
 
