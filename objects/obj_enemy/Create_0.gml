@@ -51,7 +51,11 @@ Initialize = function(actionQueue, startingAction, timeoutAction, position, drop
 	visible = true;
 	instance_activate_object(id);
 
-	_drop = drop_;
+	if(drop_ != undefined)
+		_drop = drop_;
+	else {
+		_drop = new PowerUpManager().Instance().GetRandomPickup();
+	}
 
 	SubInitialize();
 

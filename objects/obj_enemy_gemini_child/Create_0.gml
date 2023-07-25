@@ -46,6 +46,7 @@ SubInitialize = function() {
     _collisionDamage = _defaultCollisionDamage;
 	
 	_wasKilled = false;
+	_drop = undefined;
 	onDeath.AddListener(function() { _wasKilled = true; })
 }
 SubReserve = function() {

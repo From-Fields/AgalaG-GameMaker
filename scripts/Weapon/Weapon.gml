@@ -20,7 +20,6 @@ function Weapon(bullet) constructor {
 	}
 	
 	SetWeaponAudio = function(audioId, audioEmitter) {
-		show_debug_message("Setup audio")
 		_audioId = audioId;
 		_audioEmitter = audioEmitter;
 	}
