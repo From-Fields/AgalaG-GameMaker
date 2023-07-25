@@ -77,6 +77,10 @@ Initialize = function(
 	_speed = speed_;
     ApplyPhisicsMovement(direction_, speed_);
 	SetCollisionGroup(-1);
+	
+	_timer = undefined;
+	_pause = instance_find(obj_pause_controller, 0);
+	_pause.onPause.AddListener(OnPause);
 }
 
 SetCollisionGroup = function(group) {
@@ -123,3 +127,17 @@ ReserveToPool = function() {
 
 Pool  = function() { return new HazardPool().Instance(); }
 ResetCooldown = function() { _bounceCooldown = true; }
+
+OnPause = function(paused) {
+	if(_timer == undefined)
+		return;
+		
+	if(paused) {
+		time_source_pause(_timer_a);
+		time_source_pause(_timer_b);
+	}
+	else {
+		time_source_resume(_timer_a);
+		time_source_resume(_timer_b);
+	}
+}

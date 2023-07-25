@@ -38,6 +38,7 @@ Create = function (
 
 	_timeout = timeout;
 	_hasTimedOut = false;
+	_timer = undefined;
 }
 	
 // Methods
@@ -52,8 +53,13 @@ Initialize = function() {
 
     if(_waitForTimeout && _timeout > 0)
         alarm[0] = room_speed * _timeout;
-	else if(!_waitForTimeout)
-		time_source_start(time_source_create(time_source_game, 0.5, time_source_units_seconds, OnRelease));
+	else if(!_waitForTimeout) {
+		_timer = time_source_create(time_source_game, 0.5, time_source_units_seconds, OnRelease);
+		time_source_start(_timer);
+	}
+	
+	_pause = instance_find(obj_pause_controller, 0);
+	_pause.onPause.AddListener(OnPause);
 }
 ExecuteTimeoutAction = function() {
     if(_hasTimedOut)
@@ -68,3 +74,13 @@ OnRelease = function() {
 	 _onUnitReleased.Invoke(id);
 }
 Reserve = function() { return _hazard.ReserveToPool(); }
+
+OnPause = function(paused) {
+	if(_timer == undefined)
+		return;
+		
+	if(paused)
+		time_source_pause(_timer);
+	else
+		time_source_resume(_timer);
+}

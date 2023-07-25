@@ -54,6 +54,7 @@
     {"id":{"name":"Weapon","path":"scripts/Weapon/Weapon.yy",},"order":0,},
     {"id":{"name":"obj_enemy_bumblebee","path":"objects/obj_enemy_bumblebee/obj_enemy_bumblebee.yy",},"order":3,},
     {"id":{"name":"sfx_move_gemini","path":"sounds/sfx_move_gemini/sfx_move_gemini.yy",},"order":2,},
+    {"id":{"name":"obj_pause_controller","path":"objects/obj_pause_controller/obj_pause_controller.yy",},"order":1,},
     {"id":{"name":"obj_levelController","path":"objects/obj_levelController/obj_levelController.yy",},"order":1,},
     {"id":{"name":"scr_pickUpPool","path":"scripts/scr_pickUpPool/scr_pickUpPool.yy",},"order":0,},
     {"id":{"name":"obj_enemy_kamikaze","path":"objects/obj_enemy_kamikaze/obj_enemy_kamikaze.yy",},"order":0,},
