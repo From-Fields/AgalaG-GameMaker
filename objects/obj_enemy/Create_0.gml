@@ -56,7 +56,7 @@ Initialize = function(actionQueue, startingAction, timeoutAction, position, drop
 	SubInitialize();
 
 	if(_moveSound != noone)
-		_moveSoundInstance = audio_play_sound_on(_audioEmitter, _moveSound, true, 0);
+		_moveSoundInstance = audio_play_sound_on(_audioEmitter, _moveSound, true, 0, .005);
 
 	if(startingAction != undefined)
 		ExecuteStartingAction();
