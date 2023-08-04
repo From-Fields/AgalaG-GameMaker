@@ -35,12 +35,10 @@ RemoveUnitFromWave = function(unit) {
     ds_list_remove(_unitList, unit);
 	
 	unit._onUnitReleased.RemoveListener(RemoveUnitFromWave);
-	
-	show_debug_message(ds_list_size(_unitList));
 
     if(ds_list_empty(_unitList))
     {
-        _onWaveDone.Invoke();
+		_onWaveDone.Invoke();
         _isDone = true;
 		
 		alarm[0] = -1;

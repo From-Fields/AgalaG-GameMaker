@@ -31,8 +31,8 @@ CallNextWave = function() {
     }
 	
 	_currentWave = _level.GetNextWave();
-    _currentWave._onWaveDone.AddListener(CallNextWave);
     _currentWave.Initialize();
+    _currentWave._onWaveDone.AddListener(CallNextWave);
 }
 
 EndLevel = function() {
