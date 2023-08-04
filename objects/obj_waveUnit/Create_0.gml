@@ -11,33 +11,42 @@ Create = function (
 		enemy = instance_create_layer(0, 0, "Instances", enemy);
 		enemy.Reserve();
 	}
-	
-	_enemy = enemy.Pool().Get();
+	enemy_ = enemy;
 	_startingPoint = startingPoint;
 
 	_startingAction = startingAction;
 	_timeoutAction = timeoutAction;
-	_actions = actions;
+	_actionCache = ds_queue_create();
+	ds_queue_copy(_actionCache, actions);
 	
 	_drop = drop_;
 	
-	_onUnitReleased = new EventListener();
-
-	if(onDeath != undefined)
-		_enemy.onDeath.AddListener(onDeath);
-	if(onRelease != undefined)
-		_enemy.onRelease.AddListener(onRelease);
-		
-	_enemy.onRelease.AddListener(OnRelease)
+	_onDeath = onDeath;
+	_onRelease = onRelease;
 
 	_timeout = timeout;
-	_hasTimedOut = false;
+	
+	_onUnitReleased = new EventListener();
 }
 	
 // Methods
 Initialize = function() {
-	_enemy.Initialize(_actions, _startingAction, _timeoutAction, _startingPoint, _drop);
+	_enemy = enemy_.Pool().Get();
 	
+	_actions = ds_queue_create();
+	ds_queue_copy(_actions, _actionCache);
+	
+	_enemy.Initialize(_actions, _startingAction, _timeoutAction, _startingPoint, _drop);
+	_hasTimedOut = false;
+	
+	_onUnitReleased = new EventListener();
+	
+	if(_onDeath != undefined)
+		_enemy.onDeath.AddListener(_onDeath);
+	if(_onRelease != undefined)
+		_enemy.onRelease.AddListener(_onRelease);
+		
+	_enemy.onRelease.AddListener(OnRelease)
 
     if(_timeout > 0)
         alarm[0] = room_speed * _timeout;
