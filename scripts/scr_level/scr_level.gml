@@ -55,7 +55,7 @@ function EndlessLevel(waves): Level(waves) constructor{
 
         if(ds_queue_size(_waveQueue) == 0) {
             do {
-                ShuffleWaves();
+                _waveQueue = ShuffleWaves(_waveCache);
                 _currentWave = ds_queue_dequeue(_waveQueue);
 				
 				if(ds_list_size(_waveCache) == 1)
