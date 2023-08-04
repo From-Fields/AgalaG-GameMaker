@@ -6,6 +6,9 @@ _level = undefined;
 
 _currentWave = undefined;
 
+onNoWave = undefined;
+onGameOver = undefined;
+
 Create = function(level, player) {
 	_player = player;
 	_level = level;
@@ -33,11 +36,13 @@ CallNextWave = function() {
 }
 
 EndLevel = function() {
-    onNoWave.Invoke();
+	if(onNoWave != undefined)
+		onNoWave.Invoke();
     ClearEvents();
 } 
 GameOver = function() {
-    onGameOver.Invoke();
+	if(onGameOver != undefined)
+		onGameOver.Invoke();
     ClearEvents();
 } 
 ClearEvents = function() {
