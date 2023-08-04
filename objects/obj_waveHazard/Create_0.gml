@@ -7,7 +7,7 @@ Create = function (
 	startingPoint, direction_,
 	maxBounces = 0, waitForTimeout = false, scale_ = new Vector2(1, 1),
 	onRelease = undefined, damage_ = 1, health_ = 1, sprite_ = spr_hazard_a, 
-	speed_ = 1200, rotationSpeed_ = 150, timeout = -1
+	speed_ = 2000, rotationSpeed_ = 150, timeout = -1
 ) {
 	if(!instance_exists(hazard)){
 		hazard = instance_create_layer(0, 0, "Instances", hazard);

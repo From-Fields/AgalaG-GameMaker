@@ -33,7 +33,7 @@ Initialize = function(
     position, direction_, 
 	maxBounces = 0,
 	health_ = 1, damage = 1,
-	speed_ = 750, rotate = true, rotationSpeed = 100,
+	speed_ = 2000, rotate = true, rotationSpeed = 100,
 	scale = new Vector2(1, 1),
 	sprite_ = spr_hazard_a
 ) {
