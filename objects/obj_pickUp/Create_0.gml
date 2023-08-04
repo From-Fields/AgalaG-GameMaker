@@ -48,6 +48,10 @@ Initialize = function(
 	_direction = direction_;
 	_speed = speed_;
     ApplyPhisicsMovement(direction_, speed_);
+	
+	_timer = undefined;
+	_pause = instance_find(obj_pause_controller, 0);
+	_pause.onPause.AddListener(OnPause);
 }
 
 SetPosition = function(_x, _y) {
@@ -71,3 +75,13 @@ SetPosition = function(_x, _y) {
 
 Pool  = function() { return new PickUpPool().Instance(); }
 ResetCooldown = function() { _bounceCooldown = true; }
+
+OnPause = function(paused) {
+	if(_timer == undefined)
+		return;
+		
+	if(paused)
+		time_source_pause(_timer);
+	else
+		time_source_resume(_timer);
+}

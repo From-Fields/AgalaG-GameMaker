@@ -6,5 +6,3 @@ if (_isPlayer){
 	other.TakeDamage(_damage);
 	DestroySelf();
 }
-
-show_debug_message("hello")

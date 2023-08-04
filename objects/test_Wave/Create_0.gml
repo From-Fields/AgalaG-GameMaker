@@ -18,8 +18,7 @@ CreateWave = function()
         new MoveTowards(new Vector2(300, 300), 0.7),
         new MoveTowards(new Vector2(-60, 350), 1.5),
 		queueA,
-		LogScore,
-		new ShieldPowerUp()
+		LogScore
 	);
 	
 	queueB = ds_queue_create();
@@ -31,8 +30,7 @@ CreateWave = function()
         new MoveAndShoot(new Vector2(1366 - 300, 300), 0.7),
         new MoveTowards(new Vector2(1366 + 60, 350), 1.5),
 		queueB,
-		LogScore,
-		new MissileWeaponPowerUp()
+		LogScore
 	);
 	
 	hazardA = instance_create_layer(0, 0, "Controller", obj_waveHazard);

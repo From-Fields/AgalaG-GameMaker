@@ -20,10 +20,22 @@ function Weapon(bullet) constructor {
 	}
 	
 	SetWeaponAudio = function(audioId, audioEmitter) {
-		show_debug_message("Setup audio")
 		_audioId = audioId;
 		_audioEmitter = audioEmitter;
 	}
+	OnPause = function(paused) {
+		if(_timer == undefined)
+			return;
+		
+		if(paused)
+			time_source_pause(_timer);
+		else
+			time_source_resume(_timer);
+	}
+	
+	_timer = undefined;
+	_pause = instance_find(obj_pause_controller, 0);
+	_pause.onPause.AddListener(OnPause);
 }
 
 ///@function DefaultWeapon();
@@ -39,6 +51,8 @@ function DefaultWeapon(isPlayer = true, sprite_ = spr_bullet, bullet = obj_bulle
 	_isPlayer = isPlayer;
 	
 	_canShoot = true;
+	
+	_timer = undefined;
 	
 	Shoot = function(position) {
 		if(!_canShoot)
@@ -58,7 +72,8 @@ function DefaultWeapon(isPlayer = true, sprite_ = spr_bullet, bullet = obj_bulle
             return;
 
         _canShoot = false;
-		time_source_start(time_source_create(time_source_game, _cooldown, time_source_units_seconds, OnCooldownEnd));
+		_timer = time_source_create(time_source_game, _cooldown, time_source_units_seconds, OnCooldownEnd);
+		time_source_start(_timer);
     }
     OnCooldownEnd = function() {
 		_canShoot = true;
@@ -111,7 +126,8 @@ function MissileWeapon (isPlayer = true, sprite_ = spr_bullet, bullet = obj_bull
             return;
 
         _canShoot = false;
-		time_source_start(time_source_create(time_source_game, _cooldown, time_source_units_seconds, OnCooldownEnd));
+		_timer = time_source_create(time_source_game, _cooldown, time_source_units_seconds, OnCooldownEnd);
+		time_source_start(_timer);
     }
 	
     OnCooldownEnd = function() {
@@ -159,7 +175,8 @@ function TripleMachineGun(isPlayer = true, sprite_ = spr_bullet, bullet = obj_bu
             return;
 
         _canShoot = false;
-		time_source_start(time_source_create(time_source_game, _cooldown, time_source_units_seconds, OnCooldownEnd));
+		_timer = time_source_create(time_source_game, _cooldown, time_source_units_seconds, OnCooldownEnd);
+		time_source_start(_timer);
     }
 	
     OnCooldownEnd = function() {

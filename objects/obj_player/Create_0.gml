@@ -35,7 +35,6 @@ _frameAccumulator = 0;
 
 // Methods
 SwitchWeapon = function(_newWeapon) {
-	show_debug_message("change weapon");
 	if(_newWeapon != noone)	
 		_currentWeapon = _newWeapon;
 		
@@ -68,9 +67,9 @@ RemovePowerUp = function(_powerUp) {
 }
 
 Heal = function(_amount) {
-	show_debug_message("Heal: " + string(_amount) + " + " + string(_health));
+	// show_debug_message("Heal: " + string(_amount) + " + " + string(_health));
 	_health = clamp(_health + _amount, 0, _maxHealth);
-	show_debug_message(string(_health));
+	// show_debug_message(string(_health));
 }
 
 // Interface Implementation
@@ -99,8 +98,10 @@ TakeDamage = function(_amount) {
 
 SetInvulnerability = function(isInvulnerable = false) {
 	_isInvulnerable = isInvulnerable;
-	if(isInvulnerable)	
-		time_source_start(time_source_create(time_source_game, 1.5, time_source_units_seconds, SetInvulnerability));
+	if(isInvulnerable) {
+		_timer = time_source_create(time_source_game, 1.5, time_source_units_seconds, SetInvulnerability);
+		time_source_start(_timer);
+	}
 }
 
 Move = function(_direction, _speed, _acceleration) {
@@ -138,5 +139,17 @@ Die = function(){
 	
 	onDeath.Invoke();
 }
+OnPause = function(paused) {
+	if(_timer == undefined)
+		return;
+		
+	if(paused)
+		time_source_pause(_timer);
+	else
+		time_source_resume(_timer);
+}
 
 SwitchDefaultWeapon();
+_timer = undefined;
+_pause = instance_find(obj_pause_controller, 0);
+_pause.onPause.AddListener(OnPause);

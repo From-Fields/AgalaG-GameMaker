@@ -25,4 +25,5 @@ _bounceCooldown = false;
 if(_currentBounces >= _maxBounces) 
 	SetCollisionGroup(-1);
 
-time_source_start(time_source_create(time_source_game, 10, time_source_units_frames, ResetCooldown));
+_timer_b = time_source_create(time_source_game, 10, time_source_units_frames, ResetCooldown)
+time_source_start(_timer_b);

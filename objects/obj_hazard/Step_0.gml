@@ -30,7 +30,9 @@ CheckPosition = function() {
 CheckWallCollision = function() {
 	if(instance_place(x, y, obj_wall)) {
 		_willRemove = true;
-		time_source_start(time_source_create(time_source_game, 1.5, time_source_units_seconds, ReserveToPool));
+		
+		_timer_a = time_source_create(time_source_game, 1.5, time_source_units_seconds, ReserveToPool);
+		time_source_start(_timer_a);
 	}
 	
 }
