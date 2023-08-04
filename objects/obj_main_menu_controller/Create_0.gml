@@ -9,6 +9,7 @@ fullscreen_active = [ false ];
 global.master_volume = 10;
 global.music_volume = 10;
 global.sfx_volume = 10;
+global.level = undefined;
 
 master_volume_pos = [ room_width / 2 + 250, room_height / 2];
 music_volume_pos = [ room_width / 2 + 250, room_height / 2 + 100];
@@ -16,6 +17,7 @@ sfx_volume_pos = [ room_width / 2 + 250, room_height / 2 + 200];
 
 startGame = function() {
 	room_goto(Room1);
+	global.level = new GameWaves().GetLevel;
 }
 
 settings = function() {

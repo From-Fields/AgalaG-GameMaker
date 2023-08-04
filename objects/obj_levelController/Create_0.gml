@@ -45,3 +45,8 @@ ClearEvents = function() {
     onGameOver = undefined;
     _player.onDeath.RemoveListener(GameOver);
 }
+
+
+_level = global.level();
+_player = instance_find(obj_player, 0);
+Initialize();

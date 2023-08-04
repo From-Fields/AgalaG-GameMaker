@@ -39,7 +39,10 @@ Initialize = function(actionQueue, startingAction, timeoutAction, position, drop
 		return;
 		
 	_isDead = false;
-	_actionQueue = actionQueue;
+	
+	_actionQueue = ds_queue_create();
+	ds_queue_copy(_actionQueue, actionQueue);
+	
 	_startingAction = startingAction;
 	_timeoutAction = timeoutAction;
 
