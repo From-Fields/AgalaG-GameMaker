@@ -29,7 +29,6 @@
     {"id":{"name":"scr_listUtils","path":"scripts/scr_listUtils/scr_listUtils.yy",},"order":0,},
     {"id":{"name":"Sprite9","path":"sprites/Sprite9/Sprite9.yy",},"order":1,},
     {"id":{"name":"obj_pickUp","path":"objects/obj_pickUp/obj_pickUp.yy",},"order":0,},
-    {"id":{"name":"Sprite18","path":"sprites/Sprite18/Sprite18.yy",},"order":4,},
     {"id":{"name":"spr_powerup_shield","path":"sprites/spr_powerup_shield/spr_powerup_shield.yy",},"order":0,},
     {"id":{"name":"spr_gemini","path":"sprites/spr_gemini/spr_gemini.yy",},"order":1,},
     {"id":{"name":"obj_main_menu_controller","path":"objects/obj_main_menu_controller/obj_main_menu_controller.yy",},"order":0,},
