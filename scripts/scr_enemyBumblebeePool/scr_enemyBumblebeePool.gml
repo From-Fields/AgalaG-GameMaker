@@ -19,7 +19,7 @@ function EnemyBumblebeePool() constructor {
 	}
 	onGetAction = function(entity) {
 		//show_debug_message("Got")
-		return obj_enemy_bumblebee.onGetFromPool(entity) 
+		//return obj_enemy_bumblebee.onGetFromPool(entity) 
 	}
 	onReleaseAction = function(entity) { 
 		//show_debug_message("Released")
