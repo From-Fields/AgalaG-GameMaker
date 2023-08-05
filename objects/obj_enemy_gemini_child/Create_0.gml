@@ -31,7 +31,7 @@ SetParent = function(parent, positionOffset, orbitingVelocity) {
     _orbitingVelocity = orbitingVelocity;
 }
 SetWeapon = function(weaponCooldown, missileDamage, missileSpeed) {
-    _weapon.SetAttributes(missileSpeed, missileDamage, weaponCooldown, new Vector2(0, 1), -1, new Vector2(50, 50));
+    _weapon.SetAttributes(missileSpeed, missileDamage, weaponCooldown, new Vector2(0, 1), -1, new Vector2(0, 50));
 	_weapon.SetWeaponAudio(_shotSound, _audioEmitter);
 }
 
