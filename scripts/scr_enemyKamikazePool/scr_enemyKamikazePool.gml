@@ -19,7 +19,7 @@ function EnemyKamikazePool() constructor {
 	}
 	onGetAction = function(entity) {
 		//show_debug_message("Got")
-		return obj_enemy_kamikaze.onGetFromPool(entity) 
+		//return obj_enemy_kamikaze.onGetFromPool(entity) 
 	}
 	onReleaseAction = function(entity) { 
 		//show_debug_message("Released")
