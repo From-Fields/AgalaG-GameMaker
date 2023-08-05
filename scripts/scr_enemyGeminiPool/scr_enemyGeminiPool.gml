@@ -19,7 +19,7 @@ function EnemyGeminiPool() constructor {
 	}
 	onGetAction = function(entity) {
 		//show_debug_message("Got")
-		return obj_enemy_gemini.onGetFromPool(entity) 
+		//return obj_enemy_gemini.onGetFromPool(entity) 
 	}
 	onReleaseAction = function(entity) { 
 		//show_debug_message("Released")

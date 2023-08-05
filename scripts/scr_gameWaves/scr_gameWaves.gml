@@ -11,10 +11,15 @@ function GameWaves() constructor {
 		var width = room_width, height = room_height;
 		
 		var doubleKami = new DoubleKami(onDeath, width, height)._controller;
-		var bumbleTrouble = new BumbleTrouble(onDeath, width, height)._controller;	
-	
+		var bumbleTrouble = new BumbleTrouble(onDeath, width, height)._controller;
+		var geminiSentry = new GeminiSentry(onDeath, width, height)._controller;	
+		var asteroidClock = new AsteroidClock(width, height)._controller;	
+
 		//ds_list_add(waves, doubleKami);
-		ds_list_add(waves, bumbleTrouble);
+		//ds_list_add(waves, bumbleTrouble);
+		//ds_list_add(waves, geminiSentry);
+		ds_list_add(waves, asteroidClock);
+
 
 		return waves;
 	}
@@ -117,3 +122,90 @@ function BumbleTrouble(onDeath_, width, height): Wave(8) constructor {
 	
 	_controller = controller;
 }
+
+function GeminiSentry(onDeath_, width, height): Wave(9) constructor {
+	_list = ds_list_create();
+	
+	var actionQueue_a = ds_queue_create();
+	ds_queue_enqueue(actionQueue_a, new ShootInSeconds(8));
+	
+	var unit_a = instance_create_layer(0, 0, "Controller", obj_waveUnit);
+	
+	unit_a.Create
+    (
+		obj_enemy_gemini,
+        new Vector2(width * 0.5, -height * 0.2),
+        new MoveTowards(new Vector2(width*0.5, height * 0.2)),
+        new MoveTowards(new Vector2(width*0.5, -height * 0.2)),
+        actionQueue_a,
+        onDeath_
+    );
+	
+	var actionQueue_b = ds_queue_create();
+	ds_queue_enqueue(actionQueue_b, new MoveTowards(new Vector2(width*0.25, height * 0.3)));
+	ds_queue_enqueue(actionQueue_b, new ShootInSeconds(2));
+	
+	var unit_b = instance_create_layer(0, 0, "Controller", obj_waveUnit);
+	unit_b.Create
+    (
+		obj_enemy_bumblebee,
+        new Vector2(-width * 0.1, -height * 0.2),
+        new WaitSeconds(1),
+        new MoveAndShoot(new Vector2(width * 1.2, height * 1)),
+        actionQueue_b,
+        onDeath_
+    );
+	
+	var actionQueue_c = ds_queue_create();
+	ds_queue_enqueue(actionQueue_c, new MoveTowards(new Vector2(width*0.75, height * 0.2)));
+	ds_queue_enqueue(actionQueue_c, new ShootInSeconds(2));
+	
+	var unit_c = instance_create_layer(0, 0, "Controller", obj_waveUnit);
+	unit_c.Create
+    (
+		obj_enemy_bumblebee,
+        new Vector2(width * 1.1, -height * 0.2),
+        new WaitSeconds(1),
+        new MoveAndShoot(new Vector2(-width * 0.2, height * 1)),
+        actionQueue_c,
+        onDeath_
+    );
+	
+	ds_list_add(_list, unit_a);
+	ds_list_add(_list, unit_b);
+	ds_list_add(_list, unit_c);
+	
+	var controller = instance_create_layer(0, 0, "Controller", obj_waveController);
+	controller.Create(_timeout, _list);
+	
+	_controller = controller;
+}
+
+function AsteroidClock(width, height): Wave(0) constructor {
+	_list = ds_list_create();
+
+	
+    var unit_a = instance_create_layer(0, 0, "Controller", obj_waveHazard);
+	unit_a.Create(new Vector2(width * 1.1, height * 0.9), new Vector2(-0.75, -0.75), 9);
+	
+    var unit_b = instance_create_layer(0, 0, "Controller", obj_waveHazard);
+	unit_b.Create(new Vector2(width * 0.7, -height * 0.6), new Vector2(-0.25, 1.25), 7);
+	
+    var unit_c = instance_create_layer(0, 0, "Controller", obj_waveHazard);
+	unit_c.Create(new Vector2(-width * 0.4, height * 0.1), new Vector2(1, 0.25), 5);
+	
+    var unit_d = instance_create_layer(0, 0, "Controller", obj_waveHazard);
+	unit_d.Create(new Vector2(-width * 0.2, height * 1.9), new Vector2(0.75, -1.5), 10);
+	
+	ds_list_add(_list, unit_a);
+	ds_list_add(_list, unit_b);
+	ds_list_add(_list, unit_c);
+	ds_list_add(_list, unit_d);
+	
+	var controller = instance_create_layer(0, 0, "Controller", obj_waveController);
+	controller.Create(_timeout, _list);
+	
+	_controller = controller;
+}
+
+

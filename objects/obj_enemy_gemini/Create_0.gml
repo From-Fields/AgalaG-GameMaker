@@ -71,7 +71,7 @@ SubInitialize = function()
         ds_list_add(_children, _childPool.Get());
         var child = ds_list_find_value(_children, i);
         yOffset = (i < 1) ? -1 * _geminiPositionOffset : _geminiPositionOffset;
-        var position = new Vector2(_position()._x, _position()._y + yOffset);
+        var position = new Vector2(phy_position_x, phy_position_y + yOffset);
 
         child.Initialize(ds_queue_create(), undefined, new WaitSeconds(200), position);
         child.SetParent(self, _geminiPositionOffset, _orbitingVelocity);
