@@ -57,6 +57,7 @@ SubInitialize = function()
 {
 	visible = false;
     _isDead = false;
+	_isReserved = false;
     _maxHealth = _defaultHealth;
     _currentHealth = _defaultHealth;
 
@@ -92,5 +93,10 @@ SubReserve = function() {
 
 //Poolable Implementation
 CreateFunction = function() { return instance_create_layer(0, 0, "Instances", obj_enemy_gemini); }
-ReserveToPool = function() { Pool().Release(id); }
+ReserveToPool = function() { 
+	if(_isReserved)
+		return;
+	Pool().Release(id);
+	_isReserved = true;
+}
 Pool = function() { return new EnemyGeminiPool().Instance(); }

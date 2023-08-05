@@ -8,6 +8,7 @@ phy_fixed_rotation = true;
 
 _score = 0;
 _isDead = false;
+_isReserved = false;
 
 _defaultSpeed = 500;
 _currentSpeed = _defaultSpeed;

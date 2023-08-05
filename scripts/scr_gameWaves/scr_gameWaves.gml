@@ -6,7 +6,7 @@ function GameWaves() constructor {
 	}
 
 	CreateWaves = function(onDeath) {
-		static waves = ds_list_create();
+		var waves = ds_list_create();
 		
 		var width = room_width, height = room_height;
 		
@@ -18,15 +18,17 @@ function GameWaves() constructor {
 		var symmetry = new Symmetry(onDeath, width, height)._controller;
 		var tsuKami = new TsuKami(onDeath, width, height)._controller;
 		var pincerBlow = new PincerBlow(onDeath, width, height)._controller;
+		var divideConquer = new DivideConquer(onDeath, width, height)._controller;
 
-		//ds_list_add(waves, doubleKami);
-		//ds_list_add(waves, bumbleTrouble);
-		//ds_list_add(waves, geminiSentry);
-		//ds_list_add(waves, asteroidClock);
-		//ds_list_add(waves, flyByNight);
-		//ds_list_add(waves, symmetry);
-		//ds_list_add(waves, tsuKami);
+		ds_list_add(waves, doubleKami);
+		ds_list_add(waves, bumbleTrouble);
+		ds_list_add(waves, geminiSentry);
+		ds_list_add(waves, asteroidClock);
+		ds_list_add(waves, flyByNight);
+		ds_list_add(waves, symmetry);
+		ds_list_add(waves, tsuKami);
 		ds_list_add(waves, pincerBlow);
+		ds_list_add(waves, divideConquer);
 
 		return waves;
 	}
@@ -590,6 +592,101 @@ function PincerBlow(onDeath_, width, height): Wave(15) constructor {
 	ds_list_add(_list, unit_d);
 	ds_list_add(_list, unit_e);
 	ds_list_add(_list, unit_f);
+	
+	var controller = instance_create_layer(0, 0, "Controller", obj_waveController);
+	controller.Create(_timeout, _list);
+	
+	_controller = controller;
+}
+
+function DivideConquer(onDeath_, width, height): Wave(15) constructor {
+	_list = ds_list_create();
+
+	var actionQueue_a = ds_queue_create();
+	ds_queue_enqueue(actionQueue_a, new MoveTowards(new Vector2(width * 0.35, height * 0.05)));
+	ds_queue_enqueue(actionQueue_a, new WaitSeconds(4));
+	
+	var unit_a = instance_create_layer(0, 0, "Controller", obj_waveUnit);
+	
+	unit_a.Create
+    (
+		obj_enemy_kamikaze,
+        new Vector2(-width * 0.05, -height * 0.2),
+        new WaitSeconds(2),
+        new MoveTowards(new Vector2(-width * 0.05, height * 1.1), 4),
+        actionQueue_a,
+        onDeath_
+    );
+	
+	var actionQueue_b = ds_queue_create();
+	ds_queue_enqueue(actionQueue_b, new MoveTowards(new Vector2(width * 0.65, height * 0.05)));
+	ds_queue_enqueue(actionQueue_b, new WaitSeconds(5));
+	
+	var unit_b = instance_create_layer(0, 0, "Controller", obj_waveUnit);
+	
+	unit_b.Create
+    (
+		obj_enemy_kamikaze,
+        new Vector2(width * 1.05, -height * 0.2),
+        new WaitSeconds(3),
+        new MoveTowards(new Vector2(width * 0.25, height * 1.1), 4),
+        actionQueue_b,
+        onDeath_
+    );
+	
+	var actionQueue_c = ds_queue_create();
+	ds_queue_enqueue(actionQueue_c, new MoveTowards(new Vector2(width * 0.15, height * 0.35)));
+	ds_queue_enqueue(actionQueue_c, new ShootInSeconds(3));
+	
+	var unit_c = instance_create_layer(0, 0, "Controller", obj_waveUnit);
+	
+	unit_c.Create
+    (
+		obj_enemy_gemini,
+        new Vector2(-width * 0.25, height * 0.7),
+        new WaitSeconds(0),
+        new MoveAndShoot(new Vector2(width * 1.05, height * 0.35)),
+        actionQueue_c,
+        onDeath_
+    );
+	
+	var actionQueue_d = ds_queue_create();
+	ds_queue_enqueue(actionQueue_d, new MoveTowards(new Vector2(width * 0.35, height * 0.6)));
+	ds_queue_enqueue(actionQueue_d, new ShootInSeconds(3));
+	
+	var unit_d = instance_create_layer(0, 0, "Controller", obj_waveUnit);
+	
+	unit_d.Create
+    (
+		obj_enemy_gemini,
+        new Vector2(-width * 0.1, height * 0.45),
+        new WaitSeconds(0.5),
+        new MoveAndShoot(new Vector2(width * 1.05, height * 0.6)),
+        actionQueue_d,
+        onDeath_
+    );
+	
+	var actionQueue_e = ds_queue_create();
+	ds_queue_enqueue(actionQueue_e, new MoveTowards(new Vector2(width * 0.5, height * 0.2)));
+	ds_queue_enqueue(actionQueue_e, new WaitSeconds(8));
+	
+	var unit_e = instance_create_layer(0, 0, "Controller", obj_waveUnit);
+	
+	unit_e.Create
+    (
+		obj_enemy_bumblebee,
+        new Vector2(width * 0.5, -height * 0.05),
+        new WaitSeconds(2.5),
+        new MoveAndShoot(new Vector2(-width * 0.1, height * 0.2)),
+        actionQueue_e,
+        onDeath_
+    );
+	
+	ds_list_add(_list, unit_a);
+	ds_list_add(_list, unit_b);
+	ds_list_add(_list, unit_c);
+	ds_list_add(_list, unit_d);
+	ds_list_add(_list, unit_e);
 	
 	var controller = instance_create_layer(0, 0, "Controller", obj_waveController);
 	controller.Create(_timeout, _list);
