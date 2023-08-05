@@ -180,9 +180,18 @@ function GeminiSentry(onDeath_, width, height): Wave(9) constructor {
         onDeath_
     );
 	
+	
+    var unit_d = instance_create_layer(0, 0, "Controller", obj_waveHazard);
+	unit_d.Create(new Vector2(width * 0.3, -height * 0.1), new Vector2(0.75, 1.5), 5);
+	
+    var unit_e = instance_create_layer(0, 0, "Controller", obj_waveHazard);
+	unit_e.Create(new Vector2(width * 0.7, -height * 0.1), new Vector2(-0.75, 3), 5);
+	
 	ds_list_add(_list, unit_a);
 	ds_list_add(_list, unit_b);
 	ds_list_add(_list, unit_c);
+	ds_list_add(_list, unit_d);
+	ds_list_add(_list, unit_e);
 	
 	var controller = instance_create_layer(0, 0, "Controller", obj_waveController);
 	controller.Create(_timeout, _list);
