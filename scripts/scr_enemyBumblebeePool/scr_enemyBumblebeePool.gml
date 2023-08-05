@@ -15,7 +15,7 @@ function EnemyBumblebeePool() constructor {
 
 	onCreateFunction = function() { 
 		//show_debug_message("Created")
-		return obj_enemy_bumblebee.CreateFunction() 
+		return instance_create_layer(0, 0, "Instances", obj_enemy_bumblebee);
 	}
 	onGetAction = function(entity) {
 		//show_debug_message("Got")
@@ -23,6 +23,6 @@ function EnemyBumblebeePool() constructor {
 	}
 	onReleaseAction = function(entity) { 
 		//show_debug_message("Released")
-		return obj_enemy_bumblebee.onReleaseToPool(entity) 
+		//return obj_enemy_bumblebee.onReleaseToPool(entity) 
 	}
 }

@@ -57,7 +57,6 @@ Stop = function() {
 }
 
 //Poolable Implementation
-CreateFunction = function() { return instance_create_layer(0, 0, "Instances", obj_enemy_bumblebee); }
 ReserveToPool = function()  { 
 	if(_isReserved)
 		return;
