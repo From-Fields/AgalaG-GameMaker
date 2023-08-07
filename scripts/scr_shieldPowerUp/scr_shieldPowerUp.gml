@@ -8,6 +8,7 @@ function ShieldPowerUp(): PowerUp() constructor{
 	
 	OnPickup = function(player) {
 		_player = player;
+		_player.shield++;
 	}
 	OnTakeDamage = function(damage, playerHealth) {
         if(damage <= 0)
@@ -20,5 +21,6 @@ function ShieldPowerUp(): PowerUp() constructor{
     }
     OnEnd = function() {
         _player.RemovePowerUp(self);
+		_player.shield--;
     }
 }

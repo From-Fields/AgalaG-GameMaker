@@ -1,6 +1,8 @@
 /// @description Insert description here
 // You can write your code in this editor
 
+_score = 0;
+
 _player = undefined;
 _level = undefined;
 
@@ -9,14 +11,22 @@ _currentWave = undefined;
 onNoWave = undefined;
 onGameOver = undefined;
 
+_restarting = false;
+
+UpdateScore = function(points) {
+	_score += points;
+}
+
 Create = function(level, player) {
 	_player = player;
 	_level = level;
 }
 
 Initialize = function() {
-	_player.onDeath.AddListener(GameOver);
-	CallNextWave();
+	if (instance_exists(_player))
+		_player.onDeath.AddListener(GameOver);
+	if (!_restarting)
+		CallNextWave();
 }
 
 CallNextWave = function() {
@@ -44,6 +54,7 @@ GameOver = function() {
 	if(onGameOver != undefined)
 		onGameOver.Invoke();
     ClearEvents();
+	obj_gameoverui_controller.show = true;
 } 
 ClearEvents = function() {
     onNoWave = undefined;

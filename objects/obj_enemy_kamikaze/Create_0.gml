@@ -20,7 +20,10 @@ TakeDamage = function(_amount) {
 	_currentHealth = clamp(_currentHealth - _amount, 0, _maxHealth);
 	
 	if(_currentHealth == 0)
+	{
 		Die();
+		obj_levelController.UpdateScore(_score);
+	}
 }
 Move = function(_direction, _speed, _acceleration) {
 	ApplyPhisicsMovement(_direction, _speed, _acceleration);	
