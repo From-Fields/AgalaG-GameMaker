@@ -64,7 +64,10 @@ TakeDamage = function(_amount) {
 	_currentHealth = clamp(_currentHealth - _amount, 0, _maxHealth);
 	
 	if(_currentHealth == 0)
+	{
 		Die();
+		obj_levelController.UpdateScore(_score);
+	}
 }
 Move = function(_direction, _speed, _acceleration) {
 	_desiredVelocity = _direction.Multiply(_speed);

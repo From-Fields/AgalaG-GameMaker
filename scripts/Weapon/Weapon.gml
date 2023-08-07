@@ -9,6 +9,10 @@ function Weapon(bullet) constructor {
 	_audioId = noone;
 	_audioEmitter = noone;
 	
+	AmmoToString = function() { 
+		return string(_currentAmmunition); 
+	}
+	
 	Initialize = function() {
 	}
 	
@@ -53,6 +57,10 @@ function DefaultWeapon(isPlayer = true, sprite_ = spr_bullet, bullet = obj_bulle
 	_canShoot = true;
 	
 	_timer = undefined;
+	
+	AmmoToString = function() { 
+		return "-"; 
+	}
 	
 	Shoot = function(position) {
 		if(!_canShoot)

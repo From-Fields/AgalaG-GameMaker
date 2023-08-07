@@ -29,9 +29,11 @@ TogglePause = function(paused) {
 ResumeGame = function() {
 	TogglePause(false);
 }
-Retry = function() {
 
+Retry = function() {
+	room_restart();
 }
+
 QuitToMenu = function() {
 	new EnemyBumblebeePool().Instance().Clear();
 	new EnemyGeminiChildPool().Instance().Clear();

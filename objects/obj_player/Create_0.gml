@@ -19,6 +19,8 @@ _currentAcceleration = _defaultAcceleration;
 _maxHealth = 3;
 _health = _maxHealth;
 
+shield = 0;
+
 _powerUps = ds_list_create();
 _inputHandler = new InputHandler().Instance();
 onDeath = new EventListener();
