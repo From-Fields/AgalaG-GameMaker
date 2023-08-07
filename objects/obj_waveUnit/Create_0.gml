@@ -1,6 +1,8 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 
+_enemy = undefined;
+
 //Constructor
 Create = function (
 	enemy,
@@ -60,6 +62,9 @@ ExecuteTimeoutAction = function() {
     _enemy.ExecuteTimeoutAction();
 }
 OnRelease = function() {
+	if(_enemy == undefined)
+		return;
+	
 	 _enemy.onRelease.RemoveListener(OnRelease);
 	 _onUnitReleased.Invoke(id);
 }

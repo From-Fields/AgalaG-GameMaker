@@ -1,6 +1,8 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 
+_hazard = undefined;
+
 //Constructor
 Create = function (
 	startingPoint, direction_,
@@ -77,6 +79,9 @@ ExecuteTimeoutAction = function() {
     OnRelease();
 }
 OnRelease = function() {
+	if(_hazard == undefined)
+		return;
+	
 	 _hazard.onRelease.RemoveListener(OnRelease);
 	 _onUnitReleased.Invoke(id);
 }
