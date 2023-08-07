@@ -47,9 +47,9 @@ CreateWave = function()
 
 	wave.Create(10, unitList);
 
-    wave._onWaveDone.AddListener(CreateWave);
-
     wave.Initialize();
+
+    wave._onWaveDone.AddListener(CreateWave);
 }
 
 LogScore = function(_score) {

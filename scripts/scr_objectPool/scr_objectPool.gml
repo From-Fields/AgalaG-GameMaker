@@ -60,4 +60,10 @@ function ObjectPool(
 
          Release(newEntity);
     }
+	
+	Clear = function() {
+		ds_list_clear(_activeList);
+		ds_list_clear(_inactiveList);
+		ds_queue_clear(_inactiveQueue);
+	}
 }

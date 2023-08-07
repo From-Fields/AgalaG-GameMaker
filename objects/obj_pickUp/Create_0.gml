@@ -20,7 +20,7 @@ _audioEmitter = audio_emitter_create();
 _bounceSound = sfx_bounce;
 
 Initialize = function(
-    powerUp, position, direction_, speed_ = 900, 
+    powerUp, position, direction_, speed_ = 2000, 
     rotate = true, rotationSpeed = 150, 
     doScale = true, maximumScale = 1.3, scaleSpeed = 5
 ) {

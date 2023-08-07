@@ -6,6 +6,9 @@ _level = undefined;
 
 _currentWave = undefined;
 
+onNoWave = undefined;
+onGameOver = undefined;
+
 Create = function(level, player) {
 	_player = player;
 	_level = level;
@@ -28,16 +31,18 @@ CallNextWave = function() {
     }
 	
 	_currentWave = _level.GetNextWave();
-    _currentWave._onWaveDone.AddListener(CallNextWave);
     _currentWave.Initialize();
+    _currentWave._onWaveDone.AddListener(CallNextWave);
 }
 
 EndLevel = function() {
-    onNoWave.Invoke();
+	if(onNoWave != undefined)
+		onNoWave.Invoke();
     ClearEvents();
 } 
 GameOver = function() {
-    onGameOver.Invoke();
+	if(onGameOver != undefined)
+		onGameOver.Invoke();
     ClearEvents();
 } 
 ClearEvents = function() {
@@ -45,3 +50,8 @@ ClearEvents = function() {
     onGameOver = undefined;
     _player.onDeath.RemoveListener(GameOver);
 }
+
+
+_level = global.level();
+_player = instance_find(obj_player, 0);
+Initialize();

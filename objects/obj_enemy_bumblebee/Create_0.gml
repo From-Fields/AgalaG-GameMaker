@@ -22,7 +22,7 @@ SubInitialize = function() {
 	_maxHealth = _defaultHealth;
 	_currentHealth = _defaultHealth;
 
-    _defaultSpeed = 500;
+    _defaultSpeed = 700;
     _defaultAcceleration = 10;
             
     _currentSpeed = _defaultSpeed;
@@ -35,7 +35,7 @@ SubInitialize = function() {
 
 
 SetWeapon = function(weaponCooldown, missileDamage, missileSpeed) {
-    _weapon.SetAttributes(missileSpeed, missileDamage, weaponCooldown, new Vector2(0, 1), -1, new Vector2(100, 100));
+    _weapon.SetAttributes(missileSpeed, missileDamage, weaponCooldown, new Vector2(0, 1), -1, new Vector2(0, 50));
 	_weapon.SetWeaponAudio(_shotSound, _audioEmitter);
 }
 
@@ -57,6 +57,10 @@ Stop = function() {
 }
 
 //Poolable Implementation
-CreateFunction = function() { return instance_create_layer(0, 0, "Instances", obj_enemy_bumblebee); }
-ReserveToPool = function() { Pool().Release(id); }
+ReserveToPool = function()  { 
+	if(_isReserved)
+		return;
+	Pool().Release(id);
+	_isReserved = true;
+}
 Pool = function() { return new EnemyBumblebeePool().Instance(); }

@@ -1,11 +1,11 @@
 {
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
-  "name": "InputHandler",
+  "name": "scr_gameWaves",
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "PlayerBehaviour",
-    "path": "folders/Scripts/PlayerBehaviour.yy",
+    "name": "Levels",
+    "path": "folders/Scripts/Levels.yy",
   },
 }

@@ -6,30 +6,43 @@
 Create = function(timeout, unitList){
 	_isDone = false;
 	_timeout = timeout;
-	_unitList = unitList;
 
 	_onWaveDone = new EventListener();
+	
+	_unitCache = ds_list_create();
+	ds_list_copy(_unitCache, unitList);
 }
 
 Initialize = function() {
+	_isDone = false;
+	_unitList = ds_list_create();
+	ds_list_copy(_unitList, _unitCache);
+
+	_onWaveDone = new EventListener();
+	
 	var _count = ds_list_size(_unitList);
 		
 	for(i = 0; i < _count; i++) {
 		var _unit = ds_list_find_value(_unitList, i);
 			
-		_unit._onUnitReleased.AddListener(RemoveUnitFromWave);
 		_unit.Initialize();
+		_unit._onUnitReleased.AddListener(RemoveUnitFromWave);
 	}
 
 	alarm[0] = room_speed * _timeout;
 }
 RemoveUnitFromWave = function(unit) {
     ds_list_remove(_unitList, unit);
+	
+	unit._onUnitReleased.RemoveListener(RemoveUnitFromWave);
 
     if(ds_list_empty(_unitList))
     {
-        _onWaveDone.Invoke();
+		_onWaveDone.Invoke();
         _isDone = true;
+		
+		alarm[0] = -1;
+		alarm[1] = -1;
     }
 }
 TimeOutAllUnits = function() {
@@ -45,13 +58,13 @@ TimeOutAllUnits = function() {
     alarm[1] = room_speed * _timeout / 2;
 }
 EliminateAllUnits = function() {
-	var _count = ds_list_size(_unitList);
+	var _count = ds_list_size(_unitCache);
 	
 	for(i = 0; i < _count; i++) {
 		if(_isDone)
 			return;
 			
-		var _unit = ds_list_find_value(_unitList, i);
+		var _unit = ds_list_find_value(_unitCache, i);
 		_unit.Reserve();			
 	}
 }

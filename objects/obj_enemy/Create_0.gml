@@ -8,6 +8,7 @@ phy_fixed_rotation = true;
 
 _score = 0;
 _isDead = false;
+_isReserved = false;
 
 _defaultSpeed = 500;
 _currentSpeed = _defaultSpeed;
@@ -39,7 +40,10 @@ Initialize = function(actionQueue, startingAction, timeoutAction, position, drop
 		return;
 		
 	_isDead = false;
-	_actionQueue = actionQueue;
+	
+	_actionQueue = ds_queue_create();
+	ds_queue_copy(_actionQueue, actionQueue);
+	
 	_startingAction = startingAction;
 	_timeoutAction = timeoutAction;
 

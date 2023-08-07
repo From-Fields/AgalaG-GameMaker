@@ -3,18 +3,18 @@
 
 //Constructor
 Create = function (
-	hazard,
 	startingPoint, direction_,
 	maxBounces = 0, waitForTimeout = false, scale_ = new Vector2(1, 1),
 	onRelease = undefined, damage_ = 1, health_ = 1, sprite_ = spr_hazard_a, 
-	speed_ = 1200, rotationSpeed_ = 150, timeout = -1
+	speed_ = 2000, rotationSpeed_ = 150, timeout = -1
 ) {
-	if(!instance_exists(hazard)){
-		hazard = instance_create_layer(0, 0, "Instances", hazard);
+	if(!instance_exists(obj_hazard)){
+		var hazard = instance_create_layer(0, 0, "Instances", obj_hazard);
 		hazard.ReserveToPool();
 	}
 	
-	_hazard = hazard.Pool().Get();
+	hazard_ = hazard;
+	
 	_startingPoint = startingPoint;
 	
 	_direction = direction_;
@@ -29,27 +29,34 @@ Create = function (
 	
 	_waitForTimeout = waitForTimeout;
 	
-	_onUnitReleased = new EventListener();
-
-	if(onRelease != undefined)
-		_hazard.onRelease.AddListener(onRelease);
-		
-	_hazard.onRelease.AddListener(OnRelease)
+	_onRelease = onRelease;
 
 	_timeout = timeout;
-	_hasTimedOut = false;
 	_timer = undefined;
+
+	_onUnitReleased = new EventListener();
 }
 	
 // Methods
 Initialize = function() {
+	_hazard = hazard_.Pool().Get();
+	
 	_hazard.Initialize(
 		_startingPoint, _direction, _maxBounces, 
 		_health, _damage,
 		_speed, true, _rotationSpeed,
 		_scale, _sprite
 	);
+
+	_onUnitReleased = new EventListener();
+
+	if(_onRelease != undefined)
+		_hazard.onRelease.AddListener(onRelease);
+		
+	_hazard.onRelease.AddListener(OnRelease);
 	
+	_hasTimedOut = false;
+	_timer = undefined;
 
     if(_waitForTimeout && _timeout > 0)
         alarm[0] = room_speed * _timeout;
